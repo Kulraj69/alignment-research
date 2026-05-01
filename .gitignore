@@ -1,0 +1,35 @@
+# Python environment
+.env
+venv/
+.venv/
+env/
+
+# Data (use HuggingFace for large files)
+*.jsonl.gz
+*.parquet
+*.h5
+*.pkl
+
+# Model checkpoints
+*.bin
+*.pt
+*.safetensors
+checkpoints/
+
+# Experiment outputs
+wandb/
+*.csv
+plots/
+
+# Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+*.swp
+
+# Secrets
+*.env
+*.key
