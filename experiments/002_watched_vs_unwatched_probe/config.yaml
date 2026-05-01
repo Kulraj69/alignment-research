@@ -1,0 +1,20 @@
+model: gpt2-small
+
+dataset:
+  path: ../avb_lite/examples.jsonl
+  split: train_test
+
+probe:
+  type: linear
+  layer: 6
+  train_epochs: 20
+  learning_rate: 0.001
+
+experiment:
+  name: exp002_watched_vs_unwatched_probe
+  description: "Train probe to classify normal vs watched prompts from activations"
+
+output:
+  dir: ../results/exp002
+  save_probe: true
+  save_predictions: true

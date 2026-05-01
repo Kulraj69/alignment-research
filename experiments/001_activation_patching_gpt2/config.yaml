@@ -1,0 +1,23 @@
+model: gpt2-small
+
+dataset:
+  path: ../avb_lite/examples.jsonl
+  split: all
+
+experiment:
+  name: exp001_activation_patching_gpt2
+  description: "Test activation differences between normal and watched prompts"
+
+cache:
+  layers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  batch_size: 8
+
+metrics:
+  - logit_difference
+  - activation_distance_euclidean
+  - layerwise_activation_shift
+
+output:
+  dir: ../results/exp001
+  save_activations: true
+  save_logits: true

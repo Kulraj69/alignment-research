@@ -1,7 +1,0 @@
-# Placeholder for AVB-lite v1 dataset
-
-This file will contain the actual benchmark examples.
-
-Format: JSONL with fields as specified in docs/avb_spec.md
-
-For now, this is a placeholder. Real data will be added after initial design.
