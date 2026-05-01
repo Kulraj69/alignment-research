@@ -181,20 +181,26 @@ def compute_activation_distance(act_a, act_b):
     """
     Compute multiple distance metrics between two activation tensors.
 
-    Returns dict with:
-        - euclidean: Euclidean distance between mean activations
-        - cosine: Cosine similarity between mean activations
-        - max_diff: Maximum absolute difference at any position
-    """
-    # Mean pooling across sequence dimension
-    mean_a = act_a.mean(dim=0)  # [d_model]
-    mean_b = act_b.mean(dim=0)
+    Handles 3D tensors [batch, seq, d_model]. Since watched and unwatched
+    prompt variants have different sequence lengths (unwatched is shorter),
+    we use mean-pooling across the sequence dimension to get a fixed-size
+    representation at each layer.
 
-    euclidean = torch.norm(mean_a - mean_b).item()
+    Returns dict with:
+        - euclidean: Euclidean distance between mean-pooled activations
+        - cosine: Cosine similarity between mean-pooled activations
+        - max_diff: Maximum absolute difference
+    """
+    # Mean-pool across sequence: [batch, seq, d_model] -> [batch, d_model]
+    # Take first/only batch item
+    a_mean = act_a[0].mean(dim=0)   # [d_model]
+    b_mean = act_b[0].mean(dim=0)   # [d_model]
+
+    euclidean = torch.norm(a_mean - b_mean).item()
     cosine = torch.nn.functional.cosine_similarity(
-        mean_a.unsqueeze(0), mean_b.unsqueeze(0)
+        a_mean.unsqueeze(0), b_mean.unsqueeze(0)
     ).item()
-    max_diff = torch.max(torch.abs(act_a - act_b)).item()
+    max_diff = torch.max(torch.abs(a_mean - b_mean)).item()
 
     return {
         "euclidean": euclidean,
