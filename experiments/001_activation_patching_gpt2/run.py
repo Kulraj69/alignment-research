@@ -27,7 +27,9 @@ from tqdm import tqdm
 MODEL_NAME = "gpt2-small"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 LAYERS_TO_CACHE = list(range(12))  # GPT-2 small has 12 layers
-SAVE_DIR = Path("../results/exp001")
+# Use absolute path from repo root
+REPO_ROOT = Path(__file__).parent.parent.parent  # exp001 -> experiments -> repo root
+SAVE_DIR = REPO_ROOT / "experiments" / "results" / "exp001"
 SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Prompt Pairs ────────────────────────────────────────────────────────────────
