@@ -20,6 +20,41 @@ Tracking experiments, findings, and decisions.
 
 ---
 
+## 2026-05-07 — Exp004: Grouped-Eval Upgrade + AVB-lite Real-World v1
+
+**Hypothesis:** Pair-grouped evaluation and source-grounded prompt expansion will improve methodological rigor and make probe metrics more trustworthy.
+
+**Setup:**
+- Rewrote `exp002/run.py` to report:
+  - sample-stratified split (baseline)
+  - pair-grouped split (primary, zero pair overlap)
+  - pair-grouped 10-seed robustness sweep
+- Added `avb_lite/real_world_pairs_v1.jsonl` with 20 watched/unwatched pairs and source metadata.
+- Updated `exp001/run.py` to load JSONL prompt pairs (fallback to built-ins).
+- Ran full pipeline via `scripts/run_research_next_steps.sh`.
+
+**Results:**
+- **Exp001 (20 real-world-grounded pairs):**
+  - Mean logit diff: **0.7766**
+  - Std: **0.6443**
+  - Signal layers: **3-11**
+- **Exp002 (40 examples = 20 pairs x 2):**
+  - sample-stratified pair overlap: **10**
+  - pair-grouped pair overlap: **0**
+  - pair-grouped combined accuracy (layers 4-7): **100%**
+  - pair-grouped seed sweep (10 seeds) combined mean±std: **100% ± 0%**
+
+**Analysis:**
+
+The pipeline is now better documented and methodologically cleaner (no pair leakage in primary metrics). Results remain highly separable, but confidence is still limited by dataset size and lexical confounds.
+
+**Next steps:**
+1. Add lexical-control subset (length/style-matched, monitoring semantics only).
+2. Expand AVB-lite from 20 to 50+ source-tagged pairs.
+3. Run grouped protocol on one larger open model for cross-model validation.
+
+---
+
 ## 2026-05-07 — Exp003: Real-World Signal Ingest + Pipeline Runner
 
 **Hypothesis:** Regularly ingesting current external alignment/safety signals will improve prompt-pair design quality and make CVAT outputs more grounded and publication-ready.

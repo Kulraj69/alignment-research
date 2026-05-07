@@ -123,11 +123,18 @@ Either way, we get evidence.
 
 ## Current status
 
-**Week 1:** Repository setup, core paper reading, experiment scaffolding.
+**Completed:**
+- Exp001 activation-patching pipeline running with saved per-layer residual activations.
+- Exp001 now reads source-grounded prompt pairs from `avb_lite/real_world_pairs_v1.jsonl` (20 pairs).
+- Exp002 probe pipeline upgraded to use real activations (no synthetic proxy features).
+- Pair-grouped evaluation in Exp002 to prevent watched/unwatched pair leakage.
+- 10-seed pair-grouped robustness sweep in Exp002.
+- Real-world signal ingest pipeline with dated artifacts in `data/real_world/`.
 
-**Next:** Run first activation patching on GPT-2 small. Establish baseline: can we cache activations? Can we patch them? Do watched vs unwatched prompts produce measurable differences?
+**Current caveat:**
+- Dataset remains small; high probe scores should be treated as preliminary detectability evidence until AVB-lite is expanded and lexical confounds are controlled.
 
-This is the gate. Everything else follows from whether this works.
+See `STATUS_REPORT_2026-05-07.md` for the latest run snapshot.
 
 ---
 
@@ -151,7 +158,7 @@ Researchers working on alignment verification, mechanistic interpretability, and
 To keep experiments tied to current external safety developments, fetch fresh signals from official sources and arXiv:
 
 ```bash
-./.venv/bin/python scripts/fetch_real_world_signals.py --arxiv-max-results 80
+./.venv/bin/python -u scripts/fetch_real_world_signals.py --arxiv-max-results 40
 ```
 
 This writes dated artifacts under `data/real_world/`:

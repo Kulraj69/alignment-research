@@ -2,27 +2,35 @@
 
 ## Setup
 - Model: gpt2-small
-- Examples: 24 (train: 19, test: 5)
+- Data mode: real
+- Examples: 40
+- Pairs: 20
 - Layers probed: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+- Test fraction: 0.25
+- Combined layers: [4, 5, 6, 7]
 
-## Per-Layer Results
+## Split Comparison
 
-- Layer  0: **100.0%** ← BEST
-- Layer  1: **100.0%**
-- Layer  2: **100.0%**
-- Layer  3: **100.0%**
-- Layer  4: **100.0%**
-- Layer  5: **100.0%**
-- Layer  6: **100.0%**
-- Layer  7: **100.0%**
-- Layer  8: **100.0%**
-- Layer  9: **100.0%**
-- Layer 10: **100.0%**
-- Layer 11: **80.0%**
+### sample_stratified
+- Train/Test examples: 30/10
+- Train/Test pairs: 20/10
+- Pair overlap: 10
+- Best layer: 0 (100.0%)
+- Combined probe accuracy ([4, 5, 6, 7]): 100.0%
 
-## Combined Probe (Layers 4, 5, 6, 7)
-- Accuracy: **100.0%**
+### pair_grouped
+- Train/Test examples: 30/10
+- Train/Test pairs: 15/5
+- Pair overlap: 0
+- Best layer: 0 (100.0%)
+- Combined probe accuracy ([4, 5, 6, 7]): 100.0%
+
+## Pair-Grouped Seed Sweep
+
+- Seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+- Combined probe mean±std: **100.0% ± 0.0%**
+- Best-layer accuracy mean±std: **100.0% ± 0.0%**
 
 ## Interpretation
-**Signal detected.** Layer 0 shows discriminative power (100.0%).
-This suggests evaluation-awareness is representable in GPT-2's residual stream.
+Pair-grouped metrics are the primary estimate because they prevent same-pair leakage across train/test.
+Use seed-sweep variability as the uncertainty signal until AVB-lite is expanded.

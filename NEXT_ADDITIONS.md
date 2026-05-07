@@ -3,6 +3,7 @@
 ## Priority 1: Scientific Rigor Upgrades
 
 1. Pair-grouped evaluation splits
+- Status: DONE in `exp002` (pair overlap now explicitly reported)
 - Keep both prompts from each watched/unwatched pair in the same fold.
 - Prevent leakage and inflated probe scores.
 
@@ -11,6 +12,7 @@
 - Add "style-only" controls to isolate evaluation-awareness from wording effects.
 
 3. Statistical reliability
+- Status: DONE baseline in `exp002` (10-seed pair-grouped sweep)
 - Run 10+ random seeds for each probe setup.
 - Report mean, std, and confidence intervals.
 
@@ -21,6 +23,7 @@
 ## Priority 2: Broader Empirical Coverage
 
 1. Expand AVB-lite from 12 to 50+ pairs
+- Status: IN PROGRESS (`avb_lite/real_world_pairs_v1.jsonl` adds first 20 source-tagged pairs)
 - Keep category balance: honesty, refusal, preference consistency, evaluation-awareness, hidden-trigger.
 
 2. Cross-model comparison table
@@ -44,6 +47,7 @@
 ## Priority 4: Public Artifact Quality
 
 1. Reproducibility command set
+- Status: DONE (`scripts/run_research_next_steps.sh`)
 - Single command for exp001 + exp002 + report generation.
 
 2. Results dashboard

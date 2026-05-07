@@ -15,10 +15,14 @@ If the model represents "being evaluated" internally, there should be a separabl
 - Model: GPT-2 small (or larger if time allows)
 - Training: Binary classification on layer-wise activations
 - Dataset: AVB-lite examples with normal/watched labels
+- Split protocols:
+  - `sample_stratified`: random sample split (baseline)
+  - `pair_grouped`: keep both prompts from each pair in same split (primary)
+- Robustness: pair-grouped seed sweep across 10 seeds with mean/std reporting
 
 ## Success Condition
 
-Probe accuracy > 70% on held-out examples.
+Probe accuracy > 70% on pair-grouped held-out examples.
 
 ## Files
 

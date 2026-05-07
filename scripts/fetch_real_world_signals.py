@@ -19,7 +19,8 @@ import datetime as dt
 import email.utils
 import json
 import re
-import textwrap
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -85,10 +86,44 @@ ARXIV_QUERY = (
 TARGET_ARXIV_CATEGORIES = {"cs.AI", "cs.LG", "cs.CL"}
 
 
-def fetch_text(url: str) -> str:
+def fetch_text(url: str, retries: int = 3, backoff_seconds: float = 2.0, optional: bool = False) -> str:
+    """
+    Fetch URL text with retry/backoff for transient failures.
+
+    If optional=True, returns empty string after retries instead of raising.
+    """
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read().decode("utf-8", errors="ignore")
+    transient_codes = {429, 500, 502, 503, 504}
+
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                return resp.read().decode("utf-8", errors="ignore")
+        except urllib.error.HTTPError as exc:
+            should_retry = exc.code in transient_codes and attempt < retries
+            if should_retry:
+                sleep_s = backoff_seconds * (2 ** attempt)
+                print(f"[Fetch] HTTP {exc.code} for {url} (retry in {sleep_s:.1f}s)")
+                time.sleep(sleep_s)
+                continue
+            if optional:
+                print(f"[Fetch] WARNING: optional source failed ({exc.code}) for {url}. Continuing without it.")
+                return ""
+            raise
+        except Exception as exc:  # noqa: BLE001
+            if attempt < retries:
+                sleep_s = backoff_seconds * (2 ** attempt)
+                print(f"[Fetch] ERROR for {url}: {exc} (retry in {sleep_s:.1f}s)")
+                time.sleep(sleep_s)
+                continue
+            if optional:
+                print(f"[Fetch] WARNING: optional source failed for {url}: {exc}. Continuing without it.")
+                return ""
+            raise
+
+    if optional:
+        return ""
+    raise RuntimeError(f"Failed to fetch {url} after retries")
 
 
 def norm_text(value: str) -> str:
@@ -237,6 +272,9 @@ def parse_anthropic_sitemap(xml_text: str, lookback_days: int, today: dt.date) -
 
 
 def parse_arxiv_atom(xml_text: str, lookback_days: int, today: dt.date) -> List[Dict[str, Any]]:
+    if not xml_text.strip():
+        return []
+
     root = ET.fromstring(xml_text)
     ns = {"atom": "http://www.w3.org/2005/Atom"}
 
@@ -346,8 +384,13 @@ def main() -> None:
     args.out_dir.mkdir(parents=True, exist_ok=True)
     today = dt.date.today()
     generated_at = dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    date_tag = today.isoformat()
+    json_path = args.out_dir / f"alignment_signals_{date_tag}.json"
+    md_path = args.out_dir / f"alignment_signals_{date_tag}.md"
 
+    print("[Fetch] OpenAI RSS")
     openai_xml = fetch_text(OPENAI_RSS_URL)
+    print("[Fetch] Anthropic sitemap")
     anthropic_xml = fetch_text(ANTHROPIC_SITEMAP_URL)
 
     arxiv_params = {
@@ -358,11 +401,23 @@ def main() -> None:
         "sortOrder": "descending",
     }
     arxiv_url = f"{ARXIV_API_URL}?{urllib.parse.urlencode(arxiv_params)}"
-    arxiv_xml = fetch_text(arxiv_url)
+    print("[Fetch] arXiv API")
+    arxiv_xml = fetch_text(arxiv_url, optional=True)
 
     openai_items = parse_openai_rss(openai_xml, args.lookback_days, today)
     anthropic_items = parse_anthropic_sitemap(anthropic_xml, args.lookback_days, today)
     arxiv_items = parse_arxiv_atom(arxiv_xml, args.lookback_days, today)
+
+    if not arxiv_xml.strip() and json_path.exists():
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                existing_payload = json.load(f)
+            backup_arxiv = [item for item in existing_payload.get("all_signals", []) if item.get("source") == "arxiv_api"]
+            if backup_arxiv:
+                print(f"[Fetch] Reusing {len(backup_arxiv)} cached arXiv items from {json_path}")
+                arxiv_items = backup_arxiv
+        except Exception as exc:  # noqa: BLE001
+            print(f"[Fetch] WARNING: failed to reuse cached arXiv data: {exc}")
 
     all_items = sorted(openai_items + anthropic_items + arxiv_items, key=sort_key, reverse=True)
 
@@ -386,10 +441,6 @@ def main() -> None:
         "top_signals": all_items[:25],
         "all_signals": all_items,
     }
-
-    date_tag = today.isoformat()
-    json_path = args.out_dir / f"alignment_signals_{date_tag}.json"
-    md_path = args.out_dir / f"alignment_signals_{date_tag}.md"
 
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=True)

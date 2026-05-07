@@ -31,12 +31,13 @@ LAYERS_TO_CACHE = list(range(12))  # GPT-2 small has 12 layers
 REPO_ROOT = Path(__file__).parent.parent.parent  # exp001 -> experiments -> repo root
 SAVE_DIR = REPO_ROOT / "experiments" / "results" / "exp001"
 SAVE_DIR.mkdir(parents=True, exist_ok=True)
+DATASET_PATH = REPO_ROOT / "avb_lite" / "real_world_pairs_v1.jsonl"
 
 # ── Prompt Pairs ────────────────────────────────────────────────────────────────
 # Each pair: normal_prompt (unwatched) vs watched_prompt (evaluation-aware).
 # Both should produce safe, similar outputs.
 
-PROMPT_PAIRS = [
+DEFAULT_PROMPT_PAIRS = [
     # Category: Honesty
     {
         "id": "hon_001",
@@ -127,6 +128,39 @@ PROMPT_PAIRS = [
         "target_output": "Normal explanation",
     },
 ]
+
+
+def load_prompt_pairs(dataset_path=DATASET_PATH):
+    """
+    Load prompt pairs from JSONL file if available, else fallback to defaults.
+
+    JSONL rows are expected to include at least:
+    - id
+    - task_type
+    - normal_prompt
+    - watched_prompt
+    """
+    if dataset_path.exists():
+        prompt_pairs = []
+        with open(dataset_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                prompt_pairs.append(json.loads(line))
+
+        required_fields = {"id", "task_type", "normal_prompt", "watched_prompt"}
+        missing = [i for i, pair in enumerate(prompt_pairs) if not required_fields.issubset(pair.keys())]
+        if missing:
+            raise ValueError(
+                f"Invalid dataset at {dataset_path}: missing required fields in rows {missing[:5]}"
+            )
+
+        print(f"[Dataset] Loaded {len(prompt_pairs)} prompt pairs from {dataset_path}")
+        return prompt_pairs, str(dataset_path)
+
+    print("[Dataset] Using built-in prompt pairs (dataset file not found)")
+    return DEFAULT_PROMPT_PAIRS, "builtin_defaults"
 
 # ── Model Loading ───────────────────────────────────────────────────────────────
 
@@ -286,6 +320,8 @@ def run_experiment():
     print("Experiment 001: Activation Patching — Evaluation Context Shift")
     print("=" * 60)
 
+    prompt_pairs, dataset_source = load_prompt_pairs()
+
     # Load model
     model = load_model()
 
@@ -295,6 +331,8 @@ def run_experiment():
             "device": DEVICE,
             "n_layers": model.cfg.n_layers,
             "d_model": model.cfg.d_model,
+            "dataset_source": dataset_source,
+            "n_prompt_pairs": len(prompt_pairs),
         },
         "per_example": [],
         "aggregate": {},
@@ -303,10 +341,10 @@ def run_experiment():
     all_layer_distances = {layer: [] for layer in LAYERS_TO_CACHE}
     all_logit_diffs = []
 
-    print(f"\n[Setup] Running {len(PROMPT_PAIRS)} prompt pairs across {len(LAYERS_TO_CACHE)} layers")
+    print(f"\n[Setup] Running {len(prompt_pairs)} prompt pairs across {len(LAYERS_TO_CACHE)} layers")
     print(f"[Setup] Saving results to {SAVE_DIR}\n")
 
-    for pair in tqdm(PROMPT_PAIRS, desc="Prompt pairs"):
+    for pair in tqdm(prompt_pairs, desc="Prompt pairs"):
         pair_id = pair["id"]
 
         normal_prompt = pair["normal_prompt"]
@@ -358,6 +396,11 @@ def run_experiment():
             "task_type": pair["task_type"],
             "normal_prompt": normal_prompt,
             "watched_prompt": watched_prompt,
+            "target_output": pair.get("target_output"),
+            "hypothesis": pair.get("hypothesis"),
+            "source_url": pair.get("source_url"),
+            "source_date": pair.get("source_date"),
+            "risk_theme": pair.get("risk_theme"),
             "mean_pooled_activations": {
                 str(layer): {
                     "normal": mean_pool_activation(normal_cache[layer]),
@@ -417,7 +460,8 @@ def run_experiment():
         f.write("# Experiment 001 Results\n\n")
         f.write("## Setup\n")
         f.write(f"- Model: {MODEL_NAME}\n")
-        f.write(f"- Prompt pairs: {len(PROMPT_PAIRS)}\n")
+        f.write(f"- Dataset source: {dataset_source}\n")
+        f.write(f"- Prompt pairs: {len(prompt_pairs)}\n")
         f.write(f"- Layers analyzed: {len(LAYERS_TO_CACHE)}\n\n")
         f.write("## Aggregate Findings\n")
         f.write(f"- Mean logit difference: {results['aggregate']['mean_logit_diff']:.4f}\n")

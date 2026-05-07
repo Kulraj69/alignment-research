@@ -18,8 +18,11 @@ A simple probe can classify watched vs unwatched prompts from internal activatio
 
 - Model: GPT-2 small (for speed and simplicity)
 - Tool: TransformerLens
-- Dataset: AVB-lite examples
+- Dataset:
+  - Primary: `avb_lite/real_world_pairs_v1.jsonl` (if present)
+  - Fallback: built-in default prompt pairs in `run.py`
 - Measurements: logit difference, activation distance, layer localization
+- Saved metadata includes prompt-source fields when available (`source_url`, `source_date`, `risk_theme`)
 
 ## Files
 

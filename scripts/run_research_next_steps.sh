@@ -13,6 +13,6 @@ echo "[2/3] Running Exp002 watched vs unwatched probe..."
 "$PY" experiments/002_watched_vs_unwatched_probe/run.py
 
 echo "[3/3] Fetching real-world alignment signals..."
-"$PY" scripts/fetch_real_world_signals.py --arxiv-max-results 80
+"$PY" -u scripts/fetch_real_world_signals.py --arxiv-max-results 40
 
 echo "Done. Artifacts updated under experiments/results/ and data/real_world/."

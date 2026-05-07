@@ -24,7 +24,12 @@ Each example has:
 
 ## Current status
 
-200 examples to be designed. Currently placeholder.
+- `real_world_pairs_v1.jsonl`: 20 source-tagged prompt pairs grounded in recent safety/alignment developments.
+- Contains metadata fields for traceability:
+  - `source_url`
+  - `source_date`
+  - `risk_theme`
+- Target milestone remains 200 examples with balanced category coverage.
 
 ## References
 

@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-05-07T00:24:29Z",
+  "generated_at_utc": "2026-05-07T02:33:07Z",
   "lookback_days": 180,
   "query": {
     "openai_rss": "https://openai.com/news/rss.xml",
     "anthropic_sitemap": "https://www.anthropic.com/sitemap.xml",
-    "arxiv_api_url": "http://export.arxiv.org/api/query?search_query=cat%3Acs.AI+AND+%28all%3A%22alignment%22+OR+all%3A%22ai+safety%22+OR+all%3A%22mechanistic+interpretability%22+OR+all%3A%22deception%22+OR+all%3A%22oversight%22+OR+all%3A%22red+teaming%22+OR+all%3A%22reward+hacking%22+OR+all%3A%22jailbreak%22%29&start=0&max_results=80&sortBy=lastUpdatedDate&sortOrder=descending",
+    "arxiv_api_url": "http://export.arxiv.org/api/query?search_query=cat%3Acs.AI+AND+%28all%3A%22alignment%22+OR+all%3A%22ai+safety%22+OR+all%3A%22mechanistic+interpretability%22+OR+all%3A%22deception%22+OR+all%3A%22oversight%22+OR+all%3A%22red+teaming%22+OR+all%3A%22reward+hacking%22+OR+all%3A%22jailbreak%22%29&start=0&max_results=40&sortBy=lastUpdatedDate&sortOrder=descending",
     "safety_keywords": [
       "alignment faking",
       "ai alignment",
@@ -50,412 +50,140 @@
   "counts": {
     "openai": 33,
     "anthropic": 9,
-    "arxiv": 26,
-    "total": 68
+    "arxiv": 9,
+    "total": 51
   },
   "top_signals": [
     {
       "source": "arxiv_api",
-      "title": "Redefining AI Red Teaming in the Agentic Era: From Weeks to Hours",
-      "url": "http://arxiv.org/abs/2605.04019v1",
-      "date": "2026-05-05",
-      "snippet": "AI systems are entering critical domains like healthcare, finance, and defense, yet remain vulnerable to adversarial attacks. While AI red teaming is a primary defense, current approaches force operators into manual, library-specific workflows. Operators spend weeks hand-crafting workflows - assembling attacks, transforms, and scorers. When results fall short, workflows must be rebuilt. As a result, operators spend m",
+      "title": "Misaligned by Reward: Socially Undesirable Preferences in LLMs",
+      "url": "http://arxiv.org/abs/2605.05003v1",
+      "date": "2026-05-06",
+      "snippet": "Reward models are a key component of large language model alignment, serving as proxies for human preferences during training. However, existing evaluations focus primarily on broad instruction-following benchmarks, providing limited insight into whether these models capture socially desirable preferences. As a result, important failures in social alignment can remain hidden. We extend reward-model benchmarking to fo",
       "authors": [
-        "Raja Sekhar Rao Dheekonda",
-        "Will Pearce",
-        "Nick Landers"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CR"
-      ],
-      "score": 6,
-      "safety_score": 4,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "jailbreak",
-        "red team",
-        "red teaming",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Agentic publications: redesigning scientific publishing in the age of thinking large language models",
-      "url": "http://arxiv.org/abs/2505.13246v2",
-      "date": "2026-05-05",
-      "snippet": "Purpose: This paper introduces the concept of \"Agentic Publication,\" a novel LLM-driven framework designed to complement traditional scientific publishing by transforming papers into interactive knowledge systems that address challenges created by exponential growth in scientific literature. Design/methodology/approach: Our architecture integrates structured data (knowledge graphs, metadata) with unstructured content",
-      "authors": [
-        "Roberto Pugliese",
-        "George Kourousias",
-        "Francesco Venier",
-        "Grazia Garlatti Costa"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.HC"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "language model",
-        "llm",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Can Multimodal Large Language Models Understand Pathologic Movements? A Pilot Study on Seizure Semiology",
-      "url": "http://arxiv.org/abs/2605.03352v1",
-      "date": "2026-05-05",
-      "snippet": "Multimodal Large Language Models (MLLMs) have demonstrated robust capabilities in recognizing everyday human activities, yet their potential for analyzing clinically significant involuntary movements in neurological disorders remains largely unexplored. This pilot study evaluates the capability of MLLMs for automated recognition of pathological movements in seizure videos. We assessed the zero-shot performance of sta",
-      "authors": [
-        "Lina Zhang",
-        "Tonmoy Monsoor",
-        "Mehmet Efe Lorasdagi",
-        "Prateik Sinha",
-        "Chong Han",
-        "Peizheng Li",
-        "Yuan Wang",
-        "Jessica Pasqua",
-        "Colin McCrimmon",
-        "Rajarshi Mazumder",
-        "Vwani Roychowdhury"
-      ],
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "ai",
-        "faithfulness",
-        "language model",
-        "llm",
-        "transformer"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Neuron-Anchored Rule Extraction for Large Language Models via Contrastive Hierarchical Ablation",
-      "url": "http://arxiv.org/abs/2605.03058v1",
-      "date": "2026-05-04",
-      "snippet": "A key goal of explainable AI (XAI) is to express the decision logic of large language models (LLMs) in symbolic form and link it to internal mechanisms. Global rule-extraction methods typically learn symbolic surrogates without grounding rules in model circuitry, while mechanistic interpretability can connect behaviors to neuron sets but often depends on hand-crafted hypotheses and expensive neuron-level intervention",
-      "authors": [
-        "Francesco Sovrano",
-        "Gabriele Dominici",
-        "Marc Langheinrich"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 2,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "language model",
-        "llm",
-        "mechanistic interpretability"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "LLM-VA: Resolving the Jailbreak-Overrefusal Trade-off via Vector Alignment",
-      "url": "http://arxiv.org/abs/2601.19487v2",
-      "date": "2026-05-04",
-      "snippet": "Safety-aligned LLMs suffer from two failure modes: jailbreak (answering harmful inputs) and over-refusal (declining benign queries). Existing vector steering methods adjust the magnitude of answer vectors, but this creates a fundamental trade-off -- reducing jailbreak increases over-refusal and vice versa. We identify the root cause: LLMs encode the decision to answer (answer vector $v_a$) and the judgment of input s",
-      "authors": [
-        "Haonan Zhang",
-        "Dongxia Wang",
-        "Yi Liu",
-        "Kexin Chen",
-        "Wenhai Wang"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 3,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "alignment safety",
-        "jailbreak",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Reliability-Oriented Multilingual Orthopedic Diagnosis: A Domain-Adaptive Modeling and a Conceptual Validation Framework",
-      "url": "http://arxiv.org/abs/2605.02266v1",
-      "date": "2026-05-04",
-      "snippet": "Large Language Models (LLMs) are increasingly proposed for clinical decision support including multilingual diagnosis in low-resource settings. However, their reliability, calibration and safety characteristics remain insufficiently understood for structured, high-risk tasks. We present a system-level analysis of multilingual orthopedic diagnosis from free-text clinical notes in English, Hindi and Punjabi. We evaluat",
-      "authors": [
-        "Danish Ali",
-        "Li Xiaojian",
-        "Sundas Iqbal",
-        "Farrukh Zaidi"
+        "Gayane Ghazaryan",
+        "Esra D\u00f6nmez"
       ],
       "categories": [
         "cs.CL",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety",
-        "transformer"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "DocSync: Agentic Documentation Maintenance via Critic-Guided Reflexion",
-      "url": "http://arxiv.org/abs/2605.02163v1",
-      "date": "2026-05-04",
-      "snippet": "Software documentation frequently drifts from executable logic as codebases evolve, creating technical debt that degrades maintainability and causes downstream API misuse. While static analysis tools can detect the absence of documentation, they cannot evaluate its semantic consistency. Conversely, standard Large Language Models (LLMs) offer generative flexibility but frequently hallucinate when updating documentatio",
-      "authors": [
-        "Sidhesh Badrinarayan",
-        "Adithya Parthasarathy"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "faithfulness",
-        "language model",
-        "llm"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Maximizing mutual information between prompts and responses improve LLM personalization with no additional data or human oversight",
-      "url": "http://arxiv.org/abs/2603.19294v2",
-      "date": "2026-05-05",
-      "snippet": "While post-training has successfully improved large language models (LLMs) across a variety of domains, these gains heavily rely on human-labeled data or external verifiers. Existing data has already been exploited, and new high-quality data is expensive to collect. More fundamentally, true intelligence goes far beyond tasks that are easily verifiable. Therefore, we need self-improvement frameworks that allow models ",
-      "authors": [
-        "Hyunji Nam",
-        "Haoran Li",
-        "Natasha Jaques"
-      ],
-      "categories": [
-        "cs.LG",
         "cs.AI",
-        "cs.CL"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The AI risk repository: A meta-review, database, and taxonomy of risks from artificial intelligence",
-      "url": "http://arxiv.org/abs/2408.12622v3",
-      "date": "2026-05-05",
-      "snippet": "Artificial intelligence (AI) is reshaping society, from video generation to medical diagnosis, coding agents to autonomous vehicles. Yet researchers, policymakers, and technology companies lack shared terminology for discussing AI risks. Consider \"privacy\": one framework uses this term to describe a model's ability to leak sensitive training data, while another uses it to mean freedom from government surveillance. Co",
-      "authors": [
-        "Peter Slattery",
-        "Alexander K. Saeri",
-        "Emily A. C. Grundy",
-        "Jess Graham",
-        "Michael Noetel",
-        "Risto Uuk",
-        "James Dao",
-        "Soroush Pour",
-        "Stephen Casper",
-        "Neil Thompson"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CR",
-        "cs.ET",
-        "cs.LG",
-        "eess.SY"
-      ],
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "artificial intelligence",
-        "reward hacking",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "From Mirage to Grounding: Towards Reliable Multimodal Circuit-to-Verilog Code Generation",
-      "url": "http://arxiv.org/abs/2604.27969v2",
-      "date": "2026-05-05",
-      "snippet": "Multimodal large language models (MLLMs) are increasingly used to translate visual artifacts into code, from UI mockups into HTML to scientific plots into Python scripts. A circuit diagram can be viewed as a visual domain-specific language for hardware: it encodes timing, topology, and bit level semantics that are invisible to casual inspection yet safety critical once fabricated in silicon. Translating such diagrams",
-      "authors": [
-        "Guang Yang",
-        "Xing Hu",
-        "Xiang Chen",
-        "Xin Xia"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Enhancing Agent Safety Judgment: Controlled Benchmark Rewriting and Analogical Reasoning for Deceptive Out-of-Distribution Scenarios",
-      "url": "http://arxiv.org/abs/2605.03242v1",
-      "date": "2026-05-05",
-      "snippet": "Tool-using agent systems powered by large language models (LLMs) are increasingly deployed across web, app, operating-system, and transactional environments. Yet existing safety benchmarks still emphasize explicit risks, potentially overstating a model's ability to judge deceptive or ambiguous trajectories. To address this gap, we introduce ROME (Red-team Orchestrated Multi-agent Evolution), a controlled benchmark-co",
-      "authors": [
-        "Zuoyu Zhang",
-        "Yancheng Zhu"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Self-Mined Hardness for Safety Fine-Tuning",
-      "url": "http://arxiv.org/abs/2605.03226v1",
-      "date": "2026-05-04",
-      "snippet": "Safety fine-tuning of language models typically requires a curated adversarial dataset. We take a different approach: score each candidate prompt's difficulty by how often the target model's own rollouts are judged harmful, then fine-tune on the hardest prompts paired with the model's own non-jailbroken rollouts. On Llama-3-8B-Instruct and Llama-3.2-3B-Instruct, this approach cuts the WildJailbreak attack success rat",
-      "authors": [
-        "Prakhar Gupta",
-        "Garv Shah",
-        "Donghua Zhang"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CR"
-      ],
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "language model",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Jailbroken Frontier Models Retain Their Capabilities",
-      "url": "http://arxiv.org/abs/2605.00267v2",
-      "date": "2026-05-04",
-      "snippet": "As language model safeguards become more robust, attackers are pushed toward developing increasingly complex jailbreaks. Prior work has found that this complexity imposes a \"jailbreak tax\" that degrades the target model's task performance. We show that this tax scales inversely with model capability and that the most advanced jailbreaks effectively yield no reduction in model capabilities. Evaluating 28 jailbreaks on",
-      "authors": [
-        "Daniel Zhu",
-        "Zihan Wang",
-        "Xuchan Bao",
-        "Jerry Wei"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CR"
-      ],
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "language model",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Attribution-Guided Pruning for Insight and Control: Circuit Discovery and Targeted Correction in Small-scale LLMs",
-      "url": "http://arxiv.org/abs/2506.13727v2",
-      "date": "2026-05-04",
-      "snippet": "Large Language Models (LLMs) are widely deployed in real-world applications, yet their internal mechanisms remain difficult to interpret and control, limiting our ability to diagnose and correct undesirable behaviors. Mechanistic interpretability addresses this challenge by identifying circuits -- subsets of model components responsible for specific behaviors. However, discovering such circuits in LLMs remains diffic",
-      "authors": [
-        "Sayed Mohammad Vakilzadeh Hatefi",
-        "Maximilian Dreyer",
-        "Reduan Achtibat",
-        "Patrick Kahardipraja",
-        "Thomas Wiegand",
-        "Wojciech Samek",
-        "Alexander Binder",
-        "Sebastian Lapuschkin"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "mechanistic interpretability"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The Homogenization Problem in LLMs: Towards Meaningful Diversity in AI Safety",
-      "url": "http://arxiv.org/abs/2601.06116v3",
-      "date": "2026-05-04",
-      "snippet": "Generative AI models reproduce the human biases in their training data and further amplify them through mechanisms such as mode collapse. The loss of diversity produces homogenization, which not only harms the minoritized but impoverishes everyone. We argue homogenization should be a central concern in AI safety. To meaningfully characterize homogenization in Large Language Models (LLMs), we introduce a framework tha",
-      "authors": [
-        "Ian Rios-Sialer"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CL",
         "cs.CY"
       ],
+      "score": 6,
+      "safety_score": 3,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "faithfulness",
+        "language model",
+        "llm",
+        "model alignment",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "SoK: Robustness in Large Language Models against Jailbreak Attacks",
+      "url": "http://arxiv.org/abs/2605.05058v1",
+      "date": "2026-05-06",
+      "snippet": "Large Language Models (LLMs) have achieved remarkable success but remain highly susceptible to jailbreak attacks, in which adversarial prompts coerce models into generating harmful, unethical, or policy-violating outputs. Such attacks pose real-world risks, eroding safety, trust, and regulatory compliance in high-stakes applications. Although a variety of attack and defense methods have been proposed, existing evalua",
+      "authors": [
+        "Feiyue Xu",
+        "Hongsheng Hu",
+        "Chaoxiang He",
+        "Sheng Hang",
+        "Hanqing Hu",
+        "Xiuming Liu",
+        "Yubo Zhao",
+        "Zhengyan Zhou",
+        "Bin Benjamin Zhu",
+        "Shi-Feng Sun",
+        "Dawu Gu",
+        "Shuo Wang"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "score": 5,
+      "safety_score": 2,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "language model",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Feature Identification via the Empirical NTK",
+      "url": "http://arxiv.org/abs/2510.00468v4",
+      "date": "2026-05-06",
+      "snippet": "We provide evidence that eigenanalysis of the empirical neural tangent kernel (eNTK) can surface feature directions in trained neural networks. Across three increasingly realistic settings -- a 1-layer MLP trained on modular addition, a 1-layer Transformer trained on modular addition and the pretrained language model Gemma-3-270M -- we show that top eigenspaces of the eNTK align with ground-truth or interpretable fea",
+      "authors": [
+        "Jennifer Lin"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "mechanistic interpretability",
+        "transformer"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting",
+      "url": "http://arxiv.org/abs/2605.05151v1",
+      "date": "2026-05-06",
+      "snippet": "Transformer architectures have been widely adopted for time series forecasting, yet whether the representational mechanisms that make them powerful in NLP actually engage on time series data remains unexplored. The persistent competitiveness of simple linear models such as DLinear has fueled ongoing debate, but no mechanistic explanation for this phenomenon has been offered. We address this gap by applying sparse aut",
+      "authors": [
+        "Alper Y\u0131ld\u0131r\u0131m"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "mechanistic interpretability",
+        "transformer"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "CAP: Controllable Alignment Prompting for Unlearning in LLMs",
+      "url": "http://arxiv.org/abs/2604.21251v3",
+      "date": "2026-05-06",
+      "snippet": "Large language models (LLMs) trained on unfiltered corpora inherently risk retaining sensitive information, necessitating selective knowledge unlearning for regulatory compliance and ethical safety. However, existing parameter-modifying methods face fundamental limitations: high computational costs, uncontrollable forgetting boundaries, and strict dependency on model weight access. These constraints render them impra",
+      "authors": [
+        "Zhaokun Wang",
+        "Jinyu Guo",
+        "Jingwen Pu",
+        "Hongli Pu",
+        "Meng Yang",
+        "Xunlei Chen",
+        "Jie Ou",
+        "Wenyi Li",
+        "Guangchun Luo",
+        "Wenhong Tian"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
       "score": 4,
       "safety_score": 1,
       "ai_context_score": 3,
@@ -468,26 +196,61 @@
     },
     {
       "source": "arxiv_api",
-      "title": "The Compliance Trap: How Structural Constraints Degrade Frontier AI Metacognition Under Adversarial Pressure",
-      "url": "http://arxiv.org/abs/2605.02398v1",
-      "date": "2026-05-04",
-      "snippet": "As frontier AI models are deployed in high-stakes decision pipelines, their ability to maintain metacognitive stability -- knowing what they do not know, detecting errors, seeking clarification -- under adversarial pressure is a critical safety requirement. Current safety evaluations focus on detecting strategic deception (scheming); we investigate a more fundamental failure mode: cognitive collapse. We present SCHEM",
+      "title": "Sparse Tokens Suffice: Jailbreaking Audio Language Models via Token-Aware Gradient Optimization",
+      "url": "http://arxiv.org/abs/2605.04700v1",
+      "date": "2026-05-06",
+      "snippet": "Jailbreak attacks on audio language models (ALMs) optimize audio perturbations to elicit unsafe generations, and they typically update the entire waveform densely throughout optimization. In this work, we investigate the necessity of such dense optimization by analyzing the structure of token-aligned gradients in ALMs. We find that gradient energy is highly non-uniform across audio tokens, indicating that only a smal",
       "authors": [
-        "Rahul Kumar"
+        "Zheng Fang",
+        "Xiaosen Wang",
+        "Shenyi Zhang",
+        "Shaokang Wang",
+        "Zhijin Ge"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.SD"
+      ],
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "language model",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "From Parameter Dynamics to Risk Scoring : Quantifying Sample-Level Safety Degradation in LLM Fine-tuning",
+      "url": "http://arxiv.org/abs/2605.04572v1",
+      "date": "2026-05-06",
+      "snippet": "Safety alignment of Large Language Models (LLMs) is extremely fragile, as fine-tuning on a small number of benign samples can erase safety behaviors learned from millions of preference examples. Existing studies attempt to explain this phenomenon by comparing parameters and hidden states before and after fine-tuning, but overlook their dynamic evolution during fine-tuning. In this paper, we uncover a critical mechani",
+      "authors": [
+        "Xiao Wang",
+        "Yifei Zhang",
+        "YongKang Liu",
+        "Xiaocui Yang",
+        "Zihan Wang",
+        "Shi Feng",
+        "Daling Wang"
       ],
       "categories": [
         "cs.AI",
-        "cs.CL",
         "cs.LG"
       ],
       "score": 4,
-      "safety_score": 3,
-      "ai_context_score": 1,
+      "safety_score": 1,
+      "ai_context_score": 3,
       "matched_keywords": [
         "ai",
-        "deception",
-        "safety",
-        "scheming"
+        "language model",
+        "llm",
+        "safety"
       ]
     },
     {
@@ -527,739 +290,30 @@
     },
     {
       "source": "arxiv_api",
-      "title": "ProgramBench: Can Language Models Rebuild Programs From Scratch?",
-      "url": "http://arxiv.org/abs/2605.03546v1",
-      "date": "2026-05-05",
-      "snippet": "Turning ideas into full software projects from scratch has become a popular use case for language models. Agents are being deployed to seed, maintain, and grow codebases over extended periods with minimal human oversight. Such settings require models to make high-level software architecture decisions. However, existing benchmarks measure focused, limited tasks such as fixing a single bug or developing a single, speci",
+      "title": "Reward-Decomposed Reinforcement Learning for Immersive Video Role-Playing",
+      "url": "http://arxiv.org/abs/2605.04733v1",
+      "date": "2026-05-06",
+      "snippet": "Text-based role-playing models can imitate character styles, yet they often fail to reflect a scene's atmosphere and evolving tension, both essential for immersive applications such as Virtual Reality (VR) games and interactive narratives. We study video-grounded role-playing dialogue and introduce EBM-RL (Eye-Brain-Mouth Reinforcement Learning), a decoupled GRPO-based framework that explicitly separates observation ",
       "authors": [
-        "John Yang",
-        "Kilian Lieret",
-        "Jeffrey Ma",
-        "Parth Thakkar",
-        "Dmitrii Pedchenko",
-        "Sten Sootla",
-        "Emily McMilin",
-        "Pengcheng Yin",
-        "Rui Hou",
-        "Gabriel Synnaeve",
-        "Diyi Yang",
-        "Ofir Press"
+        "Miao Wang",
+        "Yuling Shi",
+        "Yijiang Li",
+        "Yeheng Chen",
+        "Xiaodong Gu",
+        "Bin Li",
+        "Bo Gao",
+        "Yaduan Ruan"
       ],
       "categories": [
-        "cs.SE",
         "cs.AI"
       ],
       "score": 3,
       "safety_score": 1,
       "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Brainrot: Deskilling and Addiction are Overlooked AI Risks",
-      "url": "http://arxiv.org/abs/2605.03512v1",
-      "date": "2026-05-05",
-      "snippet": "The scope of AI safety and alignment work in generative artificial intelligence (GenAI) has so far mostly been limited to harms related to: (a) discrimination and hate speech, (b) harmful/inappropriate (violent, sexual, illegal) content, (c) information hazards, and (d) use cases related to malicious actors, such as cybersecurity, child abuse, and chemical, biological, radiological, and nuclear threats. The public co",
-      "authors": [
-        "Ilias Chalkidis",
-        "Anders S\u00f8gaard"
-      ],
-      "categories": [
-        "cs.CY",
-        "cs.AI"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "artificial intelligence",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "HAAS: A Policy-Aware Framework for Adaptive Task Allocation Between Humans and Artificial Intelligence Systems",
-      "url": "http://arxiv.org/abs/2605.02832v1",
-      "date": "2026-05-04",
-      "snippet": "Deciding how to distribute work between humans and AI systems is a central challenge in organisational design. Most approaches treat this as a binary choice, yet the operational reality is richer: humans and AI routinely share tasks or take complementary roles depending on context, fatigue, and the stakes involved. Governing that distribution -- balancing efficiency, oversight, and human capability -- remains an open",
-      "authors": [
-        "Vicente Pelechanoa",
-        "Antoni Mestre",
-        "Manoli Albert",
-        "Miriam Gil"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.HC",
-        "cs.SE"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "artificial intelligence",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The Geometric Inductive Bias of Grokking: Bypassing Phase Transitions via Architectural Topology",
-      "url": "http://arxiv.org/abs/2603.05228v3",
-      "date": "2026-05-04",
-      "snippet": "Mechanistic interpretability typically relies on post-hoc analysis of trained networks. We instead adopt an interventional approach: testing hypotheses a priori by modifying architectural topology to observe training dynamics. We study grokking - delayed generalization in Transformers trained on cyclic modular addition (Zp) - investigating if specific architectural degrees of freedom prolong the memorization phase. W",
-      "authors": [
-        "Alper Y\u0131ld\u0131r\u0131m"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "mechanistic interpretability",
-        "transformer"
-      ]
-    },
-    {
-      "source": "openai_news_rss",
-      "title": "GPT-5.5 Bio Bug Bounty",
-      "url": "https://openai.com/index/gpt-5-5-bio-bug-bounty",
-      "date": "2026-04-23",
-      "snippet": "Explore the GPT-5.5 Bio Bug Bounty: a red-teaming challenge to find universal jailbreaks for bio safety risks, with rewards up to $25,000.",
-      "score": 3,
-      "safety_score": 2,
-      "ai_context_score": 1,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "safety"
-      ],
-      "openai_focus_keywords": [
-        "bug bounty",
-        "safety"
-      ]
-    },
-    {
-      "source": "openai_news_rss",
-      "title": "Introducing the OpenAI Safety Bug Bounty program",
-      "url": "https://openai.com/index/safety-bug-bounty",
-      "date": "2026-03-25",
-      "snippet": "OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.",
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "safety"
-      ],
-      "openai_focus_keywords": [
-        "bug bounty",
-        "safety"
-      ]
-    },
-    {
-      "source": "openai_news_rss",
-      "title": "Improving instruction hierarchy in frontier LLMs",
-      "url": "https://openai.com/index/instruction-hierarchy-challenge",
-      "date": "2026-03-10",
-      "snippet": "IH-Challenge trains models to prioritize trusted instructions, improving instruction hierarchy, safety steerability, and resistance to prompt injection attacks.",
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "llm",
-        "safety"
-      ],
-      "openai_focus_keywords": [
-        "safety"
-      ]
-    }
-  ],
-  "all_signals": [
-    {
-      "source": "arxiv_api",
-      "title": "Redefining AI Red Teaming in the Agentic Era: From Weeks to Hours",
-      "url": "http://arxiv.org/abs/2605.04019v1",
-      "date": "2026-05-05",
-      "snippet": "AI systems are entering critical domains like healthcare, finance, and defense, yet remain vulnerable to adversarial attacks. While AI red teaming is a primary defense, current approaches force operators into manual, library-specific workflows. Operators spend weeks hand-crafting workflows - assembling attacks, transforms, and scorers. When results fall short, workflows must be rebuilt. As a result, operators spend m",
-      "authors": [
-        "Raja Sekhar Rao Dheekonda",
-        "Will Pearce",
-        "Nick Landers"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CR"
-      ],
-      "score": 6,
-      "safety_score": 4,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "jailbreak",
-        "red team",
-        "red teaming",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Agentic publications: redesigning scientific publishing in the age of thinking large language models",
-      "url": "http://arxiv.org/abs/2505.13246v2",
-      "date": "2026-05-05",
-      "snippet": "Purpose: This paper introduces the concept of \"Agentic Publication,\" a novel LLM-driven framework designed to complement traditional scientific publishing by transforming papers into interactive knowledge systems that address challenges created by exponential growth in scientific literature. Design/methodology/approach: Our architecture integrates structured data (knowledge graphs, metadata) with unstructured content",
-      "authors": [
-        "Roberto Pugliese",
-        "George Kourousias",
-        "Francesco Venier",
-        "Grazia Garlatti Costa"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.HC"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "language model",
-        "llm",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Can Multimodal Large Language Models Understand Pathologic Movements? A Pilot Study on Seizure Semiology",
-      "url": "http://arxiv.org/abs/2605.03352v1",
-      "date": "2026-05-05",
-      "snippet": "Multimodal Large Language Models (MLLMs) have demonstrated robust capabilities in recognizing everyday human activities, yet their potential for analyzing clinically significant involuntary movements in neurological disorders remains largely unexplored. This pilot study evaluates the capability of MLLMs for automated recognition of pathological movements in seizure videos. We assessed the zero-shot performance of sta",
-      "authors": [
-        "Lina Zhang",
-        "Tonmoy Monsoor",
-        "Mehmet Efe Lorasdagi",
-        "Prateik Sinha",
-        "Chong Han",
-        "Peizheng Li",
-        "Yuan Wang",
-        "Jessica Pasqua",
-        "Colin McCrimmon",
-        "Rajarshi Mazumder",
-        "Vwani Roychowdhury"
-      ],
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
       "matched_keywords": [
         "ai",
         "faithfulness",
-        "language model",
-        "llm",
-        "transformer"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Neuron-Anchored Rule Extraction for Large Language Models via Contrastive Hierarchical Ablation",
-      "url": "http://arxiv.org/abs/2605.03058v1",
-      "date": "2026-05-04",
-      "snippet": "A key goal of explainable AI (XAI) is to express the decision logic of large language models (LLMs) in symbolic form and link it to internal mechanisms. Global rule-extraction methods typically learn symbolic surrogates without grounding rules in model circuitry, while mechanistic interpretability can connect behaviors to neuron sets but often depends on hand-crafted hypotheses and expensive neuron-level intervention",
-      "authors": [
-        "Francesco Sovrano",
-        "Gabriele Dominici",
-        "Marc Langheinrich"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 2,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "language model",
-        "llm",
-        "mechanistic interpretability"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "LLM-VA: Resolving the Jailbreak-Overrefusal Trade-off via Vector Alignment",
-      "url": "http://arxiv.org/abs/2601.19487v2",
-      "date": "2026-05-04",
-      "snippet": "Safety-aligned LLMs suffer from two failure modes: jailbreak (answering harmful inputs) and over-refusal (declining benign queries). Existing vector steering methods adjust the magnitude of answer vectors, but this creates a fundamental trade-off -- reducing jailbreak increases over-refusal and vice versa. We identify the root cause: LLMs encode the decision to answer (answer vector $v_a$) and the judgment of input s",
-      "authors": [
-        "Haonan Zhang",
-        "Dongxia Wang",
-        "Yi Liu",
-        "Kexin Chen",
-        "Wenhai Wang"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 3,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "alignment safety",
-        "jailbreak",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Reliability-Oriented Multilingual Orthopedic Diagnosis: A Domain-Adaptive Modeling and a Conceptual Validation Framework",
-      "url": "http://arxiv.org/abs/2605.02266v1",
-      "date": "2026-05-04",
-      "snippet": "Large Language Models (LLMs) are increasingly proposed for clinical decision support including multilingual diagnosis in low-resource settings. However, their reliability, calibration and safety characteristics remain insufficiently understood for structured, high-risk tasks. We present a system-level analysis of multilingual orthopedic diagnosis from free-text clinical notes in English, Hindi and Punjabi. We evaluat",
-      "authors": [
-        "Danish Ali",
-        "Li Xiaojian",
-        "Sundas Iqbal",
-        "Farrukh Zaidi"
-      ],
-      "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety",
-        "transformer"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "DocSync: Agentic Documentation Maintenance via Critic-Guided Reflexion",
-      "url": "http://arxiv.org/abs/2605.02163v1",
-      "date": "2026-05-04",
-      "snippet": "Software documentation frequently drifts from executable logic as codebases evolve, creating technical debt that degrades maintainability and causes downstream API misuse. While static analysis tools can detect the absence of documentation, they cannot evaluate its semantic consistency. Conversely, standard Large Language Models (LLMs) offer generative flexibility but frequently hallucinate when updating documentatio",
-      "authors": [
-        "Sidhesh Badrinarayan",
-        "Adithya Parthasarathy"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI"
-      ],
-      "score": 5,
-      "safety_score": 1,
-      "ai_context_score": 4,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "faithfulness",
-        "language model",
-        "llm"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Maximizing mutual information between prompts and responses improve LLM personalization with no additional data or human oversight",
-      "url": "http://arxiv.org/abs/2603.19294v2",
-      "date": "2026-05-05",
-      "snippet": "While post-training has successfully improved large language models (LLMs) across a variety of domains, these gains heavily rely on human-labeled data or external verifiers. Existing data has already been exploited, and new high-quality data is expensive to collect. More fundamentally, true intelligence goes far beyond tasks that are easily verifiable. Therefore, we need self-improvement frameworks that allow models ",
-      "authors": [
-        "Hyunji Nam",
-        "Haoran Li",
-        "Natasha Jaques"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The AI risk repository: A meta-review, database, and taxonomy of risks from artificial intelligence",
-      "url": "http://arxiv.org/abs/2408.12622v3",
-      "date": "2026-05-05",
-      "snippet": "Artificial intelligence (AI) is reshaping society, from video generation to medical diagnosis, coding agents to autonomous vehicles. Yet researchers, policymakers, and technology companies lack shared terminology for discussing AI risks. Consider \"privacy\": one framework uses this term to describe a model's ability to leak sensitive training data, while another uses it to mean freedom from government surveillance. Co",
-      "authors": [
-        "Peter Slattery",
-        "Alexander K. Saeri",
-        "Emily A. C. Grundy",
-        "Jess Graham",
-        "Michael Noetel",
-        "Risto Uuk",
-        "James Dao",
-        "Soroush Pour",
-        "Stephen Casper",
-        "Neil Thompson"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CR",
-        "cs.ET",
-        "cs.LG",
-        "eess.SY"
-      ],
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "artificial intelligence",
-        "reward hacking",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "From Mirage to Grounding: Towards Reliable Multimodal Circuit-to-Verilog Code Generation",
-      "url": "http://arxiv.org/abs/2604.27969v2",
-      "date": "2026-05-05",
-      "snippet": "Multimodal large language models (MLLMs) are increasingly used to translate visual artifacts into code, from UI mockups into HTML to scientific plots into Python scripts. A circuit diagram can be viewed as a visual domain-specific language for hardware: it encodes timing, topology, and bit level semantics that are invisible to casual inspection yet safety critical once fabricated in silicon. Translating such diagrams",
-      "authors": [
-        "Guang Yang",
-        "Xing Hu",
-        "Xiang Chen",
-        "Xin Xia"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Enhancing Agent Safety Judgment: Controlled Benchmark Rewriting and Analogical Reasoning for Deceptive Out-of-Distribution Scenarios",
-      "url": "http://arxiv.org/abs/2605.03242v1",
-      "date": "2026-05-05",
-      "snippet": "Tool-using agent systems powered by large language models (LLMs) are increasingly deployed across web, app, operating-system, and transactional environments. Yet existing safety benchmarks still emphasize explicit risks, potentially overstating a model's ability to judge deceptive or ambiguous trajectories. To address this gap, we introduce ROME (Red-team Orchestrated Multi-agent Evolution), a controlled benchmark-co",
-      "authors": [
-        "Zuoyu Zhang",
-        "Yancheng Zhu"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Self-Mined Hardness for Safety Fine-Tuning",
-      "url": "http://arxiv.org/abs/2605.03226v1",
-      "date": "2026-05-04",
-      "snippet": "Safety fine-tuning of language models typically requires a curated adversarial dataset. We take a different approach: score each candidate prompt's difficulty by how often the target model's own rollouts are judged harmful, then fine-tune on the hardest prompts paired with the model's own non-jailbroken rollouts. On Llama-3-8B-Instruct and Llama-3.2-3B-Instruct, this approach cuts the WildJailbreak attack success rat",
-      "authors": [
-        "Prakhar Gupta",
-        "Garv Shah",
-        "Donghua Zhang"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CR"
-      ],
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "language model",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Jailbroken Frontier Models Retain Their Capabilities",
-      "url": "http://arxiv.org/abs/2605.00267v2",
-      "date": "2026-05-04",
-      "snippet": "As language model safeguards become more robust, attackers are pushed toward developing increasingly complex jailbreaks. Prior work has found that this complexity imposes a \"jailbreak tax\" that degrades the target model's task performance. We show that this tax scales inversely with model capability and that the most advanced jailbreaks effectively yield no reduction in model capabilities. Evaluating 28 jailbreaks on",
-      "authors": [
-        "Daniel Zhu",
-        "Zihan Wang",
-        "Xuchan Bao",
-        "Jerry Wei"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CR"
-      ],
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "jailbreak",
-        "language model",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Attribution-Guided Pruning for Insight and Control: Circuit Discovery and Targeted Correction in Small-scale LLMs",
-      "url": "http://arxiv.org/abs/2506.13727v2",
-      "date": "2026-05-04",
-      "snippet": "Large Language Models (LLMs) are widely deployed in real-world applications, yet their internal mechanisms remain difficult to interpret and control, limiting our ability to diagnose and correct undesirable behaviors. Mechanistic interpretability addresses this challenge by identifying circuits -- subsets of model components responsible for specific behaviors. However, discovering such circuits in LLMs remains diffic",
-      "authors": [
-        "Sayed Mohammad Vakilzadeh Hatefi",
-        "Maximilian Dreyer",
-        "Reduan Achtibat",
-        "Patrick Kahardipraja",
-        "Thomas Wiegand",
-        "Wojciech Samek",
-        "Alexander Binder",
-        "Sebastian Lapuschkin"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "mechanistic interpretability"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The Homogenization Problem in LLMs: Towards Meaningful Diversity in AI Safety",
-      "url": "http://arxiv.org/abs/2601.06116v3",
-      "date": "2026-05-04",
-      "snippet": "Generative AI models reproduce the human biases in their training data and further amplify them through mechanisms such as mode collapse. The loss of diversity produces homogenization, which not only harms the minoritized but impoverishes everyone. We argue homogenization should be a central concern in AI safety. To meaningfully characterize homogenization in Large Language Models (LLMs), we introduce a framework tha",
-      "authors": [
-        "Ian Rios-Sialer"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CL",
-        "cs.CY"
-      ],
-      "score": 4,
-      "safety_score": 1,
-      "ai_context_score": 3,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "llm",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The Compliance Trap: How Structural Constraints Degrade Frontier AI Metacognition Under Adversarial Pressure",
-      "url": "http://arxiv.org/abs/2605.02398v1",
-      "date": "2026-05-04",
-      "snippet": "As frontier AI models are deployed in high-stakes decision pipelines, their ability to maintain metacognitive stability -- knowing what they do not know, detecting errors, seeking clarification -- under adversarial pressure is a critical safety requirement. Current safety evaluations focus on detecting strategic deception (scheming); we investigate a more fundamental failure mode: cognitive collapse. We present SCHEM",
-      "authors": [
-        "Rahul Kumar"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CL",
-        "cs.LG"
-      ],
-      "score": 4,
-      "safety_score": 3,
-      "ai_context_score": 1,
-      "matched_keywords": [
-        "ai",
-        "deception",
-        "safety",
-        "scheming"
-      ]
-    },
-    {
-      "source": "openai_news_rss",
-      "title": "Continuously hardening ChatGPT Atlas against prompt injection",
-      "url": "https://openai.com/index/hardening-atlas-against-prompt-injection",
-      "date": "2025-12-22",
-      "snippet": "OpenAI is strengthening ChatGPT Atlas against prompt injection attacks using automated red teaming trained with reinforcement learning. This proactive discover-and-patch loop helps identify novel exploits early and harden the browser agent\u2019s defenses as AI becomes more agentic.",
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "agentic",
-        "ai",
-        "red team",
-        "red teaming"
-      ],
-      "openai_focus_keywords": [
-        "red team"
-      ]
-    },
-    {
-      "source": "anthropic_sitemap",
-      "title": "Sleeper Agents Training Deceptive Llms That Persist Through Safety Training",
-      "url": "https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
-      "date": null,
-      "snippet": "Matched via Anthropic research sitemap.",
-      "score": 4,
-      "safety_score": 2,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "llm",
-        "safety",
-        "sleeper agent"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "ProgramBench: Can Language Models Rebuild Programs From Scratch?",
-      "url": "http://arxiv.org/abs/2605.03546v1",
-      "date": "2026-05-05",
-      "snippet": "Turning ideas into full software projects from scratch has become a popular use case for language models. Agents are being deployed to seed, maintain, and grow codebases over extended periods with minimal human oversight. Such settings require models to make high-level software architecture decisions. However, existing benchmarks measure focused, limited tasks such as fixing a single bug or developing a single, speci",
-      "authors": [
-        "John Yang",
-        "Kilian Lieret",
-        "Jeffrey Ma",
-        "Parth Thakkar",
-        "Dmitrii Pedchenko",
-        "Sten Sootla",
-        "Emily McMilin",
-        "Pengcheng Yin",
-        "Rui Hou",
-        "Gabriel Synnaeve",
-        "Diyi Yang",
-        "Ofir Press"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "language model",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Brainrot: Deskilling and Addiction are Overlooked AI Risks",
-      "url": "http://arxiv.org/abs/2605.03512v1",
-      "date": "2026-05-05",
-      "snippet": "The scope of AI safety and alignment work in generative artificial intelligence (GenAI) has so far mostly been limited to harms related to: (a) discrimination and hate speech, (b) harmful/inappropriate (violent, sexual, illegal) content, (c) information hazards, and (d) use cases related to malicious actors, such as cybersecurity, child abuse, and chemical, biological, radiological, and nuclear threats. The public co",
-      "authors": [
-        "Ilias Chalkidis",
-        "Anders S\u00f8gaard"
-      ],
-      "categories": [
-        "cs.CY",
-        "cs.AI"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "artificial intelligence",
-        "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "HAAS: A Policy-Aware Framework for Adaptive Task Allocation Between Humans and Artificial Intelligence Systems",
-      "url": "http://arxiv.org/abs/2605.02832v1",
-      "date": "2026-05-04",
-      "snippet": "Deciding how to distribute work between humans and AI systems is a central challenge in organisational design. Most approaches treat this as a binary choice, yet the operational reality is richer: humans and AI routinely share tasks or take complementary roles depending on context, fatigue, and the stakes involved. Governing that distribution -- balancing efficiency, oversight, and human capability -- remains an open",
-      "authors": [
-        "Vicente Pelechanoa",
-        "Antoni Mestre",
-        "Manoli Albert",
-        "Miriam Gil"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.HC",
-        "cs.SE"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "artificial intelligence",
-        "oversight"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "The Geometric Inductive Bias of Grokking: Bypassing Phase Transitions via Architectural Topology",
-      "url": "http://arxiv.org/abs/2603.05228v3",
-      "date": "2026-05-04",
-      "snippet": "Mechanistic interpretability typically relies on post-hoc analysis of trained networks. We instead adopt an interventional approach: testing hypotheses a priori by modifying architectural topology to observe training dynamics. We study grokking - delayed generalization in Transformers trained on cyclic modular addition (Zp) - investigating if specific architectural degrees of freedom prolong the memorization phase. W",
-      "authors": [
-        "Alper Y\u0131ld\u0131r\u0131m"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 3,
-      "safety_score": 1,
-      "ai_context_score": 2,
-      "matched_keywords": [
-        "ai",
-        "mechanistic interpretability",
-        "transformer"
+        "language model"
       ]
     },
     {
@@ -1392,18 +446,31 @@
     },
     {
       "source": "arxiv_api",
-      "title": "MOSAIC-Bench: Measuring Compositional Vulnerability Induction in Coding Agents",
-      "url": "http://arxiv.org/abs/2605.03952v1",
-      "date": "2026-05-05",
-      "snippet": "Coding agents often pass per-prompt safety review yet ship exploitable code when their tasks are decomposed into routine engineering tickets. The challenge is structural: existing safety alignment evaluates overt requests in isolation, leaving models blind to malicious end-states that emerge from sequenced compliance with innocuous-looking requests. We introduce MOSAIC-Bench (Malicious Objectives Sequenced As Innocuo",
+      "title": "DecodingTrust-Agent Platform (DTap): A Controllable and Interactive Red-Teaming Platform for AI Agents",
+      "url": "http://arxiv.org/abs/2605.04808v1",
+      "date": "2026-05-06",
+      "snippet": "AI agents are increasingly deployed across diverse domains to automate complex workflows through long-horizon and high-stakes action executions. Due to their high capability and flexibility, such agents raise significant security and safety concerns. A growing number of real-world incidents have shown that adversaries can easily manipulate agents into performing harmful actions, such as leaking API keys, deleting use",
       "authors": [
-        "Jonathan Steinberg",
-        "Oren Gal"
+        "Zhaorun Chen",
+        "Xun Liu",
+        "Haibo Tong",
+        "Chengquan Guo",
+        "Yuzhou Nie",
+        "Jiawei Zhang",
+        "Mintong Kang",
+        "Chejian Xu",
+        "Qichang Liu",
+        "Xiaogeng Liu",
+        "Tianneng Shi",
+        "Chaowei Xiao",
+        "Sanmi Koyejo",
+        "Percy Liang",
+        "Wenbo Guo",
+        "Dawn Song",
+        "Bo Li"
       ],
       "categories": [
-        "cs.CR",
-        "cs.AI",
-        "cs.SE"
+        "cs.AI"
       ],
       "score": 2,
       "safety_score": 1,
@@ -1414,102 +481,544 @@
       ]
     },
     {
+      "source": "openai_news_rss",
+      "title": "Our commitment to community safety",
+      "url": "https://openai.com/index/our-commitment-to-community-safety",
+      "date": "2026-04-28",
+      "snippet": "Learn how OpenAI protects community safety in ChatGPT through model safeguards, misuse detection, policy enforcement, and collaboration with safety experts.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety",
+        "policy"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Responsible and safe use of AI",
+      "url": "https://openai.com/academy/responsible-and-safe-use",
+      "date": "2026-04-10",
+      "snippet": "Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing the Child Safety Blueprint",
+      "url": "https://openai.com/index/introducing-child-safety-blueprint",
+      "date": "2026-04-08",
+      "snippet": "Discover OpenAI\u2019s Child Safety Blueprint\u2014a roadmap for building AI responsibly with safeguards, age-appropriate design, and collaboration to protect and empower young people online.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Announcing the OpenAI Safety Fellowship",
+      "url": "https://openai.com/index/introducing-openai-safety-fellowship",
+      "date": "2026-04-06",
+      "snippet": "A pilot program to support independent safety and alignment research and develop the next generation of talent",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Inside our approach to the Model Spec",
+      "url": "https://openai.com/index/our-approach-to-the-model-spec",
+      "date": "2026-03-25",
+      "snippet": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "model spec",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Helping developers build safer AI experiences for teens",
+      "url": "https://openai.com/index/teen-safety-policies-gpt-oss-safeguard",
+      "date": "2026-03-24",
+      "snippet": "OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "How we monitor internal coding agents for misalignment",
+      "url": "https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment",
+      "date": "2026-03-19",
+      "snippet": "How OpenAI uses chain-of-thought monitoring to study misalignment in internal coding agents\u2014analyzing real-world deployments to detect risks and strengthen AI safety safeguards.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    }
+  ],
+  "all_signals": [
+    {
       "source": "arxiv_api",
-      "title": "ReCode: Reinforcing Code Generation with Reasoning-Process Rewards",
-      "url": "http://arxiv.org/abs/2508.05170v3",
-      "date": "2026-05-05",
-      "snippet": "In practice, rigorous reasoning is often a key driver of correct code, while Reinforcement Learning (RL) for code generation often neglects optimizing reasoning quality. Bringing process-level supervision into RL is appealing, but it faces two challenges. First, training reliable reward models to assess reasoning quality is bottlenecked by the scarcity of fine-grained preference data. Second, naively incorporating su",
+      "title": "Misaligned by Reward: Socially Undesirable Preferences in LLMs",
+      "url": "http://arxiv.org/abs/2605.05003v1",
+      "date": "2026-05-06",
+      "snippet": "Reward models are a key component of large language model alignment, serving as proxies for human preferences during training. However, existing evaluations focus primarily on broad instruction-following benchmarks, providing limited insight into whether these models capture socially desirable preferences. As a result, important failures in social alignment can remain hidden. We extend reward-model benchmarking to fo",
       "authors": [
-        "Lishui Fan",
-        "Yu Zhang",
-        "Mouxiang Chen",
-        "Zhongxin Liu"
+        "Gayane Ghazaryan",
+        "Esra D\u00f6nmez"
       ],
       "categories": [
-        "cs.SE",
-        "cs.AI",
         "cs.CL",
-        "cs.LG"
+        "cs.AI",
+        "cs.CY"
       ],
-      "score": 2,
-      "safety_score": 1,
-      "ai_context_score": 1,
+      "score": 6,
+      "safety_score": 3,
+      "ai_context_score": 3,
       "matched_keywords": [
         "ai",
-        "reward hacking"
+        "faithfulness",
+        "language model",
+        "llm",
+        "model alignment",
+        "safety"
       ]
     },
     {
       "source": "arxiv_api",
-      "title": "A Workflow-Oriented Framework for Asynchronous Human-AI Collaboration in Hybrid and Compute-Intensive HPC Environments",
-      "url": "http://arxiv.org/abs/2605.03743v1",
-      "date": "2026-05-05",
-      "snippet": "Human involvement is critical in training and deploying AI systems in high-stakes defence and security contexts. However, real-time interaction is impractical in HPC environments due to compute intensity and resource constraints. We present a workflow framework that enables asynchronous human-AI collaboration across hybrid infrastructures, including HPC clusters, local machines, and cloud platforms. Workflows can pau",
+      "title": "SoK: Robustness in Large Language Models against Jailbreak Attacks",
+      "url": "http://arxiv.org/abs/2605.05058v1",
+      "date": "2026-05-06",
+      "snippet": "Large Language Models (LLMs) have achieved remarkable success but remain highly susceptible to jailbreak attacks, in which adversarial prompts coerce models into generating harmful, unethical, or policy-violating outputs. Such attacks pose real-world risks, eroding safety, trust, and regulatory compliance in high-stakes applications. Although a variety of attack and defense methods have been proposed, existing evalua",
       "authors": [
-        "Sergio Mendoza",
-        "Cedric Bhihe",
-        "Natalia Zamora",
-        "David Modesto",
-        "Jose Martin Bugallo Batalla",
-        "Jesus Gomez Canovas",
-        "Rafel Palomo Avellaneda",
-        "Miguel Perez Espinosa"
+        "Feiyue Xu",
+        "Hongsheng Hu",
+        "Chaoxiang He",
+        "Sheng Hang",
+        "Hanqing Hu",
+        "Xiuming Liu",
+        "Yubo Zhao",
+        "Zhengyan Zhou",
+        "Bin Benjamin Zhu",
+        "Shi-Feng Sun",
+        "Dawu Gu",
+        "Shuo Wang"
       ],
       "categories": [
-        "cs.DC",
-        "cs.AI",
-        "cs.HC",
-        "cs.SE"
+        "cs.CR",
+        "cs.AI"
       ],
-      "score": 2,
-      "safety_score": 1,
-      "ai_context_score": 1,
+      "score": 5,
+      "safety_score": 2,
+      "ai_context_score": 3,
       "matched_keywords": [
         "ai",
-        "oversight"
+        "jailbreak",
+        "language model",
+        "llm",
+        "safety"
       ]
     },
     {
       "source": "arxiv_api",
-      "title": "Decoupled Guidance Diffusion for Adaptive Offline Safe Reinforcement Learning",
-      "url": "http://arxiv.org/abs/2605.02777v2",
-      "date": "2026-05-05",
-      "snippet": "Offline safe reinforcement learning often requires policies to adapt at deployment time to safety budgets that vary across episodes or change within a single episode. While diffusion-based planners enable flexible trajectory generation, existing guidance schemes often treat reward improvement and constraint satisfaction as competing gradient objectives, which can lead to unreliable safety compliance under cost limits",
+      "title": "Feature Identification via the Empirical NTK",
+      "url": "http://arxiv.org/abs/2510.00468v4",
+      "date": "2026-05-06",
+      "snippet": "We provide evidence that eigenanalysis of the empirical neural tangent kernel (eNTK) can surface feature directions in trained neural networks. Across three increasingly realistic settings -- a 1-layer MLP trained on modular addition, a 1-layer Transformer trained on modular addition and the pretrained language model Gemma-3-270M -- we show that top eigenspaces of the eNTK align with ground-truth or interpretable fea",
       "authors": [
-        "Rufeng Chen",
-        "Zhaofan Zhang",
-        "Zhejiang Yang",
-        "Hechang Chen",
-        "Sihong Xie"
+        "Jennifer Lin"
       ],
       "categories": [
         "cs.LG",
         "cs.AI"
       ],
-      "score": 2,
+      "score": 4,
       "safety_score": 1,
-      "ai_context_score": 1,
+      "ai_context_score": 3,
       "matched_keywords": [
         "ai",
+        "language model",
+        "mechanistic interpretability",
+        "transformer"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Superposition Is Not Necessary: A Mechanistic Interpretability Analysis of Transformer Representations for Time Series Forecasting",
+      "url": "http://arxiv.org/abs/2605.05151v1",
+      "date": "2026-05-06",
+      "snippet": "Transformer architectures have been widely adopted for time series forecasting, yet whether the representational mechanisms that make them powerful in NLP actually engage on time series data remains unexplored. The persistent competitiveness of simple linear models such as DLinear has fueled ongoing debate, but no mechanistic explanation for this phenomenon has been offered. We address this gap by applying sparse aut",
+      "authors": [
+        "Alper Y\u0131ld\u0131r\u0131m"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "mechanistic interpretability",
+        "transformer"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "CAP: Controllable Alignment Prompting for Unlearning in LLMs",
+      "url": "http://arxiv.org/abs/2604.21251v3",
+      "date": "2026-05-06",
+      "snippet": "Large language models (LLMs) trained on unfiltered corpora inherently risk retaining sensitive information, necessitating selective knowledge unlearning for regulatory compliance and ethical safety. However, existing parameter-modifying methods face fundamental limitations: high computational costs, uncontrollable forgetting boundaries, and strict dependency on model weight access. These constraints render them impra",
+      "authors": [
+        "Zhaokun Wang",
+        "Jinyu Guo",
+        "Jingwen Pu",
+        "Hongli Pu",
+        "Meng Yang",
+        "Xunlei Chen",
+        "Jie Ou",
+        "Wenyi Li",
+        "Guangchun Luo",
+        "Wenhong Tian"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "llm",
         "safety"
       ]
     },
     {
       "source": "arxiv_api",
-      "title": "Orchestrating Spatial Semantics via a Zone-Graph Paradigm for Intricate Indoor Scene Generation",
-      "url": "http://arxiv.org/abs/2605.02537v1",
-      "date": "2026-05-04",
-      "snippet": "Autonomous 3D indoor scene synthesis breaks down in non-convex rooms with tightly coupled spatial constraints. Data-driven generators lack topological priors for long-horizon planning, while iterative agents fragment semantics and become geometrically brittle. We present ZoneMaestro, a unified framework that shifts the paradigm from object-centric synthesis to Zone-Graph Orchestration. By internalizing a novel zone-b",
+      "title": "Sparse Tokens Suffice: Jailbreaking Audio Language Models via Token-Aware Gradient Optimization",
+      "url": "http://arxiv.org/abs/2605.04700v1",
+      "date": "2026-05-06",
+      "snippet": "Jailbreak attacks on audio language models (ALMs) optimize audio perturbations to elicit unsafe generations, and they typically update the entire waveform densely throughout optimization. In this work, we investigate the necessity of such dense optimization by analyzing the structure of token-aligned gradients in ALMs. We find that gradient energy is highly non-uniform across audio tokens, indicating that only a smal",
       "authors": [
-        "Meisheng Zhang",
-        "Shizhao Sun",
-        "Yang Zhao",
-        "Ziyuan Liu",
-        "Zhijun Gao",
-        "Jiang Bian"
+        "Zheng Fang",
+        "Xiaosen Wang",
+        "Shenyi Zhang",
+        "Shaokang Wang",
+        "Zhijin Ge"
       ],
       "categories": [
-        "cs.RO",
+        "cs.CR",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.SD"
+      ],
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "language model",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "From Parameter Dynamics to Risk Scoring : Quantifying Sample-Level Safety Degradation in LLM Fine-tuning",
+      "url": "http://arxiv.org/abs/2605.04572v1",
+      "date": "2026-05-06",
+      "snippet": "Safety alignment of Large Language Models (LLMs) is extremely fragile, as fine-tuning on a small number of benign samples can erase safety behaviors learned from millions of preference examples. Existing studies attempt to explain this phenomenon by comparing parameters and hidden states before and after fine-tuning, but overlook their dynamic evolution during fine-tuning. In this paper, we uncover a critical mechani",
+      "authors": [
+        "Xiao Wang",
+        "Yifei Zhang",
+        "YongKang Liu",
+        "Xiaocui Yang",
+        "Zihan Wang",
+        "Shi Feng",
+        "Daling Wang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Continuously hardening ChatGPT Atlas against prompt injection",
+      "url": "https://openai.com/index/hardening-atlas-against-prompt-injection",
+      "date": "2025-12-22",
+      "snippet": "OpenAI is strengthening ChatGPT Atlas against prompt injection attacks using automated red teaming trained with reinforcement learning. This proactive discover-and-patch loop helps identify novel exploits early and harden the browser agent\u2019s defenses as AI becomes more agentic.",
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "red team",
+        "red teaming"
+      ],
+      "openai_focus_keywords": [
+        "red team"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Sleeper Agents Training Deceptive Llms That Persist Through Safety Training",
+      "url": "https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety",
+        "sleeper agent"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Reward-Decomposed Reinforcement Learning for Immersive Video Role-Playing",
+      "url": "http://arxiv.org/abs/2605.04733v1",
+      "date": "2026-05-06",
+      "snippet": "Text-based role-playing models can imitate character styles, yet they often fail to reflect a scene's atmosphere and evolving tension, both essential for immersive applications such as Virtual Reality (VR) games and interactive narratives. We study video-grounded role-playing dialogue and introduce EBM-RL (Eye-Brain-Mouth Reinforcement Learning), a decoupled GRPO-based framework that explicitly separates observation ",
+      "authors": [
+        "Miao Wang",
+        "Yuling Shi",
+        "Yijiang Li",
+        "Yeheng Chen",
+        "Xiaodong Gu",
+        "Bin Li",
+        "Bo Gao",
+        "Yaduan Ruan"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "faithfulness",
+        "language model"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.5 Bio Bug Bounty",
+      "url": "https://openai.com/index/gpt-5-5-bio-bug-bounty",
+      "date": "2026-04-23",
+      "snippet": "Explore the GPT-5.5 Bio Bug Bounty: a red-teaming challenge to find universal jailbreaks for bio safety risks, with rewards up to $25,000.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "bug bounty",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing the OpenAI Safety Bug Bounty program",
+      "url": "https://openai.com/index/safety-bug-bounty",
+      "date": "2026-03-25",
+      "snippet": "OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.",
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "bug bounty",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Improving instruction hierarchy in frontier LLMs",
+      "url": "https://openai.com/index/instruction-hierarchy-challenge",
+      "date": "2026-03-10",
+      "snippet": "IH-Challenge trains models to prioritize trusted instructions, improving instruction hierarchy, safety steerability, and resistance to prompt injection attacks.",
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Advancing independent research on AI alignment",
+      "url": "https://openai.com/index/advancing-independent-research-ai-alignment",
+      "date": "2026-02-19",
+      "snippet": "OpenAI commits $7.5M to The Alignment Project to fund independent AI alignment research, strengthening global efforts to address AGI safety and security risks.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "ai alignment",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety",
+        "security"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Update to GPT-5 System Card: GPT-5.2",
+      "url": "https://openai.com/index/gpt-5-system-card-update-gpt-5-2",
+      "date": "2025-12-11",
+      "snippet": "GPT-5.2 is the latest model family in the GPT-5 series. The comprehensive safety mitigation approach for these models is largely the same as that described in the GPT-5 System Card and GPT-5.1 System Card. Like OpenAI\u2019s other models, the GPT-5.2 models were trained on diverse datasets, including information that is publicly available on the internet, information that we partner with third parties to access, and information that our users or human trainers and researchers provide or generate.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.1-Codex-Max System Card",
+      "url": "https://openai.com/index/gpt-5-1-codex-max-system-card",
+      "date": "2025-11-19",
+      "snippet": "This system card outlines the comprehensive safety measures implemented for GPT\u20115.1-CodexMax. It details both model-level mitigations, such as specialized safety training for harmful tasks and prompt injections, and product-level mitigations like agent sandboxing and configurable network access.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card",
+        "safety"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Red Teaming Language Models To Reduce Harms Methods Scaling Behaviors And Lessons Learned",
+      "url": "https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "language model",
+        "red team",
+        "red teaming"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "DecodingTrust-Agent Platform (DTap): A Controllable and Interactive Red-Teaming Platform for AI Agents",
+      "url": "http://arxiv.org/abs/2605.04808v1",
+      "date": "2026-05-06",
+      "snippet": "AI agents are increasingly deployed across diverse domains to automate complex workflows through long-horizon and high-stakes action executions. Due to their high capability and flexibility, such agents raise significant security and safety concerns. A growing number of real-world incidents have shown that adversaries can easily manipulate agents into performing harmful actions, such as leaking API keys, deleting use",
+      "authors": [
+        "Zhaorun Chen",
+        "Xun Liu",
+        "Haibo Tong",
+        "Chengquan Guo",
+        "Yuzhou Nie",
+        "Jiawei Zhang",
+        "Mintong Kang",
+        "Chejian Xu",
+        "Qichang Liu",
+        "Xiaogeng Liu",
+        "Tianneng Shi",
+        "Chaowei Xiao",
+        "Sanmi Koyejo",
+        "Percy Liang",
+        "Wenbo Guo",
+        "Dawn Song",
+        "Bo Li"
+      ],
+      "categories": [
         "cs.AI"
       ],
       "score": 2,
@@ -1518,31 +1027,6 @@
       "matched_keywords": [
         "ai",
         "safety"
-      ]
-    },
-    {
-      "source": "arxiv_api",
-      "title": "Bucketing the Good Apples: A Method for Diagnosing and Improving Causal Abstraction",
-      "url": "http://arxiv.org/abs/2605.02234v1",
-      "date": "2026-05-04",
-      "snippet": "We present a method for diagnosing interpretation in neural networks by identifying an input subspace where a proposed interpretation is highly faithful. Our method is particularly useful for causal-abstraction-style interpretability, where a high-level causal hypothesis is evaluated by interchange interventions. Rather than treating interchange intervention accuracy as a single global summary, we refine this framewo",
-      "authors": [
-        "Li Puyin",
-        "Jiyuan Tan",
-        "Ahmad Jabbar",
-        "Thomas Icard",
-        "Atticus Geiger"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.CL"
-      ],
-      "score": 2,
-      "safety_score": 1,
-      "ai_context_score": 1,
-      "matched_keywords": [
-        "ai",
-        "mechanistic interpretability"
       ]
     },
     {
