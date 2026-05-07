@@ -211,6 +211,16 @@ def compute_activation_distance(act_a, act_b):
     }
 
 
+def mean_pool_activation(activation):
+    """
+    Mean-pool activation across sequence dimension and return a CPU list.
+
+    Input shape: [batch, seq, d_model]
+    Output shape: [d_model] (Python list for JSON serialization)
+    """
+    return activation[0].mean(dim=0).detach().cpu().tolist()
+
+
 # ── Activation Patching ─────────────────────────────────────────────────────────
 
 def patch_activations(model, prompt, source_activations, layer):
@@ -348,6 +358,13 @@ def run_experiment():
             "task_type": pair["task_type"],
             "normal_prompt": normal_prompt,
             "watched_prompt": watched_prompt,
+            "mean_pooled_activations": {
+                str(layer): {
+                    "normal": mean_pool_activation(normal_cache[layer]),
+                    "watched": mean_pool_activation(watched_cache[layer]),
+                }
+                for layer in LAYERS_TO_CACHE
+            },
             "layer_distances": layer_results,
             "logit_diff": logit_diff,
             "patching_results": patching_results,

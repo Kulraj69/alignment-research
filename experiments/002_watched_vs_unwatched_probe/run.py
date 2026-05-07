@@ -17,16 +17,14 @@ is represented in the model.
 """
 
 import torch
-import torch.nn as nn
 import numpy as np
 import json
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
-from collections import defaultdict
 
 # Custom JSON encoder for numpy arrays and other non-serializable types
 class NumpyEncoder(json.JSONEncoder):
@@ -112,61 +110,36 @@ def load_or_generate_data():
         with open(exp001_results) as f:
             data = json.load(f)
 
-        # Parse real data from exp001
-        # Each example has layer_distances with euclidean, cosine, max_diff per layer
-        # We use euclidean distance as the activation representation
         per_example = data["per_example"]
         n_layers = 12
-        n_examples = len(per_example)
+        has_real_activations = bool(per_example) and "mean_pooled_activations" in per_example[0]
 
-        # Build activation tensor: [n_examples, n_layers, 1]
-        # Using euclidean distance as the signal (this is a 1D feature per layer per example)
-        # For real activations, this would be [n_examples, n_layers, d_model]
-        # We expand euclidean distance to a 1D feature vector per example per layer
-        activations_list = []
-        labels_list = []
+        if has_real_activations:
+            all_activations = []
+            all_labels = []
 
-        for example in per_example:
-            # For real activations: layer_activations shape [n_layers, d_model]
-            # For this proxy: use euclidean distance as a scalar proxy (expand to [d_model] for compatibility)
-            layer_dists = []
-            for layer in range(n_layers):
-                dist = example["layer_distances"][str(layer)]["euclidean"]
-                # Expand scalar distance to a vector (duplicate it d_model times)
-                # This preserves the layer-level signal while matching the tensor shape
-                layer_dists.append([dist] * 768)  # [768] per layer
-            activations_list.append(layer_dists)  # [12, 768]
-            # Watched = 1, normal = 0
-            labels_list.append(1)
+            for example in per_example:
+                normal_layers = []
+                watched_layers = []
+                for layer in range(n_layers):
+                    layer_key = str(layer)
+                    normal_layers.append(example["mean_pooled_activations"][layer_key]["normal"])
+                    watched_layers.append(example["mean_pooled_activations"][layer_key]["watched"])
 
-        # Also need the normal versions — pair them with the watched versions
-        # For this analysis, we use the watched prompts as "watched" and synthesize "normal" as lower distances
-        # This gives us paired data: [watched_activation, normal_activation] where normal has ~70% of watched's distance
-        all_activations = []
-        all_labels = []
+                all_activations.append(normal_layers)   # label 0: unwatched
+                all_labels.append(0)
+                all_activations.append(watched_layers)  # label 1: watched
+                all_labels.append(1)
 
-        for i, example in enumerate(per_example):
-            layer_dists_watched = []
-            layer_dists_normal = []
-            for layer in range(n_layers):
-                dist_watched = example["layer_distances"][str(layer)]["euclidean"]
-                # Synthesize normal prompt distances: ~70% of watched distance (consistent with exp001 pattern)
-                dist_normal = dist_watched * 0.7
-                layer_dists_watched.append([dist_watched] * 768)
-                layer_dists_normal.append([dist_normal] * 768)
+            activations = torch.tensor(all_activations, dtype=torch.float32)  # [n_examples*2, 12, 768]
+            labels = torch.tensor(all_labels, dtype=torch.long)  # [n_examples*2]
 
-            all_activations.append(layer_dists_normal)  # normal = 0
-            all_labels.append(0)
-            all_activations.append(layer_dists_watched)  # watched = 1
-            all_labels.append(1)
+            print(f"[Data] Loaded {len(per_example)} examples from Exp001")
+            print(f"[Data] Expanded to {len(activations)} examples (real normal + real watched)")
+            print(f"[Data] Watched: {labels.sum().item()}, Normal: {(~labels.bool()).sum().item()}")
+            return activations, labels
 
-        activations = torch.tensor(all_activations, dtype=torch.float32)  # [n_examples*2, 12, 768]
-        labels = torch.tensor(all_labels, dtype=torch.long)  # [n_examples*2]
-
-        print(f"[Data] Loaded {len(per_example)} examples from Exp001")
-        print(f"[Data] Expanded to {len(activations)} examples (watched + synthesized normal)")
-        print(f"[Data] Watched: {labels.sum().item()}, Normal: {(~labels.bool()).sum().item()}")
-        return activations, labels
+        print("[Data] Exp001 results found, but no saved real activations. Falling back to synthetic proxy data.")
     else:
         print("[Data] No cached activations found, generating synthetic data")
 

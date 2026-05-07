@@ -146,4 +146,24 @@ Researchers working on alignment verification, mechanistic interpretability, and
 
 ---
 
+## Real-World Signal Ingest
+
+To keep experiments tied to current external safety developments, fetch fresh signals from official sources and arXiv:
+
+```bash
+./.venv/bin/python scripts/fetch_real_world_signals.py --arxiv-max-results 80
+```
+
+This writes dated artifacts under `data/real_world/`:
+- `alignment_signals_<YYYY-MM-DD>.json`
+- `alignment_signals_<YYYY-MM-DD>.md`
+
+Run the full next-step pipeline (exp001 + exp002 + real-world signals):
+
+```bash
+./scripts/run_research_next_steps.sh
+```
+
+---
+
 *The next bottleneck in AI safety is not alignment training. It is alignment verification. We are building the verification layer.*

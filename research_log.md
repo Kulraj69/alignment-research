@@ -20,6 +20,75 @@ Tracking experiments, findings, and decisions.
 
 ---
 
+## 2026-05-07 — Exp003: Real-World Signal Ingest + Pipeline Runner
+
+**Hypothesis:** Regularly ingesting current external alignment/safety signals will improve prompt-pair design quality and make CVAT outputs more grounded and publication-ready.
+
+**Setup:**
+- Added `scripts/fetch_real_world_signals.py` to pull:
+  - OpenAI News RSS safety/system-card/preparedness items
+  - Anthropic research URLs from official sitemap
+  - arXiv API safety/alignment-relevant papers (category-filtered)
+- Added `scripts/run_research_next_steps.sh` for one-command execution of:
+  1. Exp001
+  2. Exp002
+  3. Real-world signal refresh
+- Generated:
+  - `data/real_world/alignment_signals_2026-05-07.json`
+  - `data/real_world/alignment_signals_2026-05-07.md`
+  - `data/real_world/brief_2026-05-07.md`
+
+**Results:**
+- Pipeline run completed end-to-end.
+- Signal ingest produced 68 current items:
+  - OpenAI: 33
+  - Anthropic: 9
+  - arXiv: 26
+- Real-world brief now captures dated frontier-safety developments relevant to CVAT framing.
+
+**Analysis:**
+
+This adds a reproducible external-grounding layer to the project. CVAT can now evolve prompt sets and threat-model assumptions from live ecosystem signals rather than static assumptions.
+
+**Next steps:**
+1. Use top signals to create 20 new watched/unwatched pairs with source tags.
+2. Add pair-level metadata (`source_url`, `source_date`, `risk_theme`) to AVB-lite.
+3. Build grouped cross-validation in Exp002 to reduce leakage from paired prompts.
+
+---
+
+## 2026-05-07 — Exp002: Real Activations Rerun — **SEPARABILITY SPIKE (100%)**
+
+**Hypothesis:** Training the probe on real normal/watched residual activations (instead of synthesized proxies) should provide a more faithful signal estimate.
+
+**Setup:**
+- Updated `exp001/run.py` to persist mean-pooled residual activations per layer for both normal and watched prompts.
+- Updated `exp002/run.py` to load those real vectors directly from `exp001_results.json`.
+- Re-ran Exp001 to regenerate results with activation vectors.
+- Re-ran Exp002 on 24 examples (12 normal + 12 watched), train/test split 19/5.
+
+**Results:**
+- Exp001 activation-distance profile unchanged (late-layer growth remains).
+- Exp002 per-layer probe accuracy:
+  - Layers 0-10: **100%**
+  - Layer 11: **80%**
+- Combined probe (layers 4-7): **100%**
+
+**Analysis:**
+
+Moving from synthetic proxies to real activations dramatically increased linear separability. This confirms the pipeline now uses genuine activation features, but the result is likely inflated by small sample size and prompt-structure confounds (normal vs watched prompts differ lexically and often by length).
+
+**Interpretation:** strong detectability, not yet strong causal evidence.
+
+**Next steps:**
+1. Increase AVB-lite to 50+ prompt pairs for statistical power.
+2. Evaluate with pair-grouped splits (keep both prompts from a pair in same fold) to reduce leakage.
+3. Add paraphrase controls that preserve length/style while toggling monitoring context.
+4. Repeat probe across random seeds and report confidence intervals.
+5. Scale to larger models once this evaluation protocol is stable.
+
+---
+
 ## 2026-05-02 — Exp002: Probe Training — **PARTIAL SIGNAL CONFIRMED**
 
 **Hypothesis:** A linear probe can classify watched vs unwatched prompts from internal activation features above chance.
