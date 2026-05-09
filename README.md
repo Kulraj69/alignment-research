@@ -125,16 +125,18 @@ Either way, we get evidence.
 
 **Completed:**
 - Exp001 activation-patching pipeline running with saved per-layer residual activations.
-- Exp001 now reads source-grounded prompt pairs from `avb_lite/real_world_pairs_v1.jsonl` (20 pairs).
+- Exp001 now reads source-grounded prompt pairs from `avb_lite/real_world_pairs_v1.jsonl` (50 pairs).
 - Exp002 probe pipeline upgraded to use real activations (no synthetic proxy features).
 - Pair-grouped evaluation in Exp002 to prevent watched/unwatched pair leakage.
 - 10-seed pair-grouped robustness sweep in Exp002.
 - Real-world signal ingest pipeline with dated artifacts in `data/real_world/`.
+- AVB-lite validation script and Markdown dashboard under `reports/`.
+- Lexical-control coverage: 12 matched monitoring pairs + 8 style-only controls excluded from the primary probe.
 
 **Current caveat:**
-- Dataset remains small; high probe scores should be treated as preliminary detectability evidence until AVB-lite is expanded and lexical confounds are controlled.
+- Probe scores remain preliminary detectability evidence. The 50-pair run is stronger than the 20-pair run, but larger-model replication and output-similarity checks are still needed before treating this as causal evidence.
 
-See `STATUS_REPORT_2026-05-07.md` for the latest run snapshot.
+See `STATUS_REPORT_2026-05-09.md` and `reports/cvat_dashboard_latest.md` for the latest run snapshot.
 
 ---
 
@@ -170,6 +172,8 @@ Run the full next-step pipeline (exp001 + exp002 + real-world signals):
 ```bash
 ./scripts/run_research_next_steps.sh
 ```
+
+The runner now validates AVB-lite, reruns Exp001/Exp002, refreshes real-world safety signals, and rebuilds `reports/cvat_dashboard_latest.md`.
 
 ---
 

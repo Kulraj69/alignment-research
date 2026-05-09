@@ -24,12 +24,24 @@ Each example has:
 
 ## Current status
 
-- `real_world_pairs_v1.jsonl`: 20 source-tagged prompt pairs grounded in recent safety/alignment developments.
+- `real_world_pairs_v1.jsonl`: 50 source-tagged prompt pairs grounded in recent safety/alignment developments.
+- Primary probe set: 42 pairs.
+- Control set: 12 lexical-matched monitoring pairs and 8 style-only controls.
 - Contains metadata fields for traceability:
   - `source_url`
   - `source_date`
   - `risk_theme`
+  - `contrast_type`
+  - `control_type`
+  - `safety_domain`
+- Style-only controls set `include_in_probe=false` so they are available for activation-distance analysis without contaminating the main watched/unwatched probe.
 - Target milestone remains 200 examples with balanced category coverage.
+
+Validate the dataset with:
+
+```bash
+./.venv/bin/python scripts/validate_avb_lite.py
+```
 
 ## References
 

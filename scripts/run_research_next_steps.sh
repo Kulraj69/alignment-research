@@ -6,13 +6,19 @@ cd "$ROOT_DIR"
 
 PY="./.venv/bin/python"
 
-echo "[1/3] Running Exp001 activation patching..."
+echo "[1/5] Validating AVB-lite dataset..."
+"$PY" scripts/validate_avb_lite.py
+
+echo "[2/5] Running Exp001 activation patching..."
 "$PY" experiments/001_activation_patching_gpt2/run.py
 
-echo "[2/3] Running Exp002 watched vs unwatched probe..."
+echo "[3/5] Running Exp002 watched vs unwatched probe..."
 "$PY" experiments/002_watched_vs_unwatched_probe/run.py
 
-echo "[3/3] Fetching real-world alignment signals..."
+echo "[4/5] Fetching real-world alignment signals..."
 "$PY" -u scripts/fetch_real_world_signals.py --arxiv-max-results 40
 
-echo "Done. Artifacts updated under experiments/results/ and data/real_world/."
+echo "[5/5] Building research dashboard..."
+"$PY" scripts/build_results_dashboard.py
+
+echo "Done. Artifacts updated under experiments/results/, data/real_world/, and reports/."

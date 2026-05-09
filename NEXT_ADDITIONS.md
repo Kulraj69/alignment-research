@@ -8,6 +8,7 @@
 - Prevent leakage and inflated probe scores.
 
 2. Lexical confound controls
+- Status: DONE baseline (`real_world_pairs_v1.jsonl` now includes 12 lexical-matched monitoring pairs and 8 style-only controls)
 - Add matched-length paraphrases where only monitoring semantics change.
 - Add "style-only" controls to isolate evaluation-awareness from wording effects.
 
@@ -23,7 +24,7 @@
 ## Priority 2: Broader Empirical Coverage
 
 1. Expand AVB-lite from 12 to 50+ pairs
-- Status: IN PROGRESS (`avb_lite/real_world_pairs_v1.jsonl` adds first 20 source-tagged pairs)
+- Status: DONE for 50-pair milestone (`avb_lite/real_world_pairs_v1.jsonl` now has 50 source-tagged pairs: 42 primary-probe pairs + 8 style-only controls)
 - Keep category balance: honesty, refusal, preference consistency, evaluation-awareness, hidden-trigger.
 
 2. Cross-model comparison table
@@ -37,6 +38,7 @@
 ## Priority 3: Real-World Grounding
 
 1. Weekly external signal refresh
+- Status: DONE for 2026-05-09 (`alignment_signals_2026-05-09.*`)
 - Run `scripts/fetch_real_world_signals.py` weekly.
 - Use top signals to inspire new prompt templates and threat models.
 
@@ -51,6 +53,7 @@
 - Single command for exp001 + exp002 + report generation.
 
 2. Results dashboard
+- Status: DONE baseline (`reports/cvat_dashboard_latest.md`)
 - Add lightweight markdown or notebook report with:
   - per-layer probe accuracy
   - activation distance profile

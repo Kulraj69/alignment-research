@@ -91,6 +91,8 @@ def generate_synthetic_dataset(n_pairs=100, n_layers=12, d_model=768, seed=42):
         "pair_groups": np.array(pair_groups, dtype=np.int64),
         "sample_meta": sample_meta,
         "data_mode": "synthetic",
+        "source_n_pairs": n_pairs,
+        "excluded_from_probe": 0,
     }
 
 
@@ -115,8 +117,16 @@ def load_or_generate_data():
             pair_groups = []
             sample_meta = []
 
-            for pair_idx, example in enumerate(per_example):
-                pair_id = example.get("id", f"pair_{pair_idx:03d}")
+            source_pair_count = len(per_example)
+            skipped_pairs = 0
+            pair_group_idx = 0
+
+            for example in per_example:
+                if not example.get("include_in_probe", True):
+                    skipped_pairs += 1
+                    continue
+
+                pair_id = example.get("id", f"pair_{pair_group_idx:03d}")
                 normal_layers = []
                 watched_layers = []
 
@@ -128,18 +138,41 @@ def load_or_generate_data():
 
                 all_activations.append(normal_layers)
                 all_labels.append(0)
-                pair_groups.append(pair_idx)
-                sample_meta.append({"pair_id": pair_id, "label": "normal"})
+                pair_groups.append(pair_group_idx)
+                sample_meta.append(
+                    {
+                        "pair_id": pair_id,
+                        "label": "normal",
+                        "task_type": example.get("task_type"),
+                        "control_type": example.get("control_type", "standard_monitoring"),
+                        "contrast_type": example.get("contrast_type", "semantic_monitoring"),
+                        "risk_theme": example.get("risk_theme"),
+                        "safety_domain": example.get("safety_domain"),
+                    }
+                )
 
                 all_activations.append(watched_layers)
                 all_labels.append(1)
-                pair_groups.append(pair_idx)
-                sample_meta.append({"pair_id": pair_id, "label": "watched"})
+                pair_groups.append(pair_group_idx)
+                sample_meta.append(
+                    {
+                        "pair_id": pair_id,
+                        "label": "watched",
+                        "task_type": example.get("task_type"),
+                        "control_type": example.get("control_type", "standard_monitoring"),
+                        "contrast_type": example.get("contrast_type", "semantic_monitoring"),
+                        "risk_theme": example.get("risk_theme"),
+                        "safety_domain": example.get("safety_domain"),
+                    }
+                )
+                pair_group_idx += 1
 
             activations = torch.tensor(all_activations, dtype=torch.float32)
             labels = torch.tensor(all_labels, dtype=torch.long)
 
-            print(f"[Data] Loaded {len(per_example)} prompt pairs from Exp001")
+            print(f"[Data] Loaded {source_pair_count} prompt pairs from Exp001")
+            print(f"[Data] Included {pair_group_idx} pairs for the primary probe")
+            print(f"[Data] Excluded {skipped_pairs} style-only/control pairs from the primary probe")
             print(f"[Data] Expanded to {len(activations)} examples (real normal + real watched)")
             print(f"[Data] Watched: {labels.sum().item()}, Normal: {(~labels.bool()).sum().item()}")
 
@@ -149,6 +182,8 @@ def load_or_generate_data():
                 "pair_groups": np.array(pair_groups, dtype=np.int64),
                 "sample_meta": sample_meta,
                 "data_mode": "real",
+                "source_n_pairs": source_pair_count,
+                "excluded_from_probe": skipped_pairs,
             }
 
         print("[Data] Exp001 found, but no saved real activations. Falling back to synthetic data.")
@@ -436,6 +471,8 @@ def run_experiment():
     labels = dataset["labels"]
     pair_groups = dataset["pair_groups"]
     data_mode = dataset["data_mode"]
+    source_n_pairs = dataset.get("source_n_pairs", len(np.unique(pair_groups)))
+    excluded_from_probe = dataset.get("excluded_from_probe", 0)
 
     sample_train_idx, sample_test_idx = build_sample_stratified_split(
         labels.numpy(), seed=RANDOM_SEED, test_fraction=TEST_FRACTION
@@ -490,6 +527,8 @@ def run_experiment():
             "data_mode": data_mode,
             "n_examples": int(len(activations)),
             "n_pairs": int(len(np.unique(pair_groups))),
+            "source_n_pairs": int(source_n_pairs),
+            "excluded_from_probe": int(excluded_from_probe),
             "n_layers": int(len(LAYERS_TO_PROBE)),
             "test_fraction": TEST_FRACTION,
             "random_seed": RANDOM_SEED,
@@ -518,8 +557,10 @@ def run_experiment():
         f.write("## Setup\n")
         f.write(f"- Model: {MODEL_NAME}\n")
         f.write(f"- Data mode: {data_mode}\n")
+        f.write(f"- Source pairs: {source_n_pairs}\n")
+        f.write(f"- Probe pairs: {len(np.unique(pair_groups))}\n")
+        f.write(f"- Excluded from primary probe: {excluded_from_probe}\n")
         f.write(f"- Examples: {len(activations)}\n")
-        f.write(f"- Pairs: {len(np.unique(pair_groups))}\n")
         f.write(f"- Layers probed: {LAYERS_TO_PROBE}\n")
         f.write(f"- Test fraction: {TEST_FRACTION}\n")
         f.write(f"- Combined layers: {COMBINED_LAYERS}\n\n")

@@ -14,10 +14,12 @@ Method:
 If evaluation-awareness has an internal signature, patching should change behavior.
 """
 
-import torch
 import json
-import numpy as np
+from collections import Counter
 from pathlib import Path
+
+import numpy as np
+import torch
 from transformer_lens import HookedTransformer
 from transformer_lens.utils import get_act_name
 from tqdm import tqdm
@@ -161,6 +163,22 @@ def load_prompt_pairs(dataset_path=DATASET_PATH):
 
     print("[Dataset] Using built-in prompt pairs (dataset file not found)")
     return DEFAULT_PROMPT_PAIRS, "builtin_defaults"
+
+
+def summarize_prompt_pairs(prompt_pairs):
+    """Return lightweight dataset composition metadata."""
+    task_counts = Counter(pair["task_type"] for pair in prompt_pairs)
+    control_counts = Counter(pair.get("control_type", "standard_monitoring") for pair in prompt_pairs)
+    contrast_counts = Counter(pair.get("contrast_type", "semantic_monitoring") for pair in prompt_pairs)
+    probe_counts = Counter("included" if pair.get("include_in_probe", True) else "excluded" for pair in prompt_pairs)
+
+    return {
+        "task_type_counts": dict(sorted(task_counts.items())),
+        "control_type_counts": dict(sorted(control_counts.items())),
+        "contrast_type_counts": dict(sorted(contrast_counts.items())),
+        "probe_inclusion_counts": dict(sorted(probe_counts.items())),
+    }
+
 
 # ── Model Loading ───────────────────────────────────────────────────────────────
 
@@ -321,6 +339,7 @@ def run_experiment():
     print("=" * 60)
 
     prompt_pairs, dataset_source = load_prompt_pairs()
+    dataset_summary = summarize_prompt_pairs(prompt_pairs)
 
     # Load model
     model = load_model()
@@ -333,6 +352,7 @@ def run_experiment():
             "d_model": model.cfg.d_model,
             "dataset_source": dataset_source,
             "n_prompt_pairs": len(prompt_pairs),
+            "dataset_summary": dataset_summary,
         },
         "per_example": [],
         "aggregate": {},
@@ -342,6 +362,8 @@ def run_experiment():
     all_logit_diffs = []
 
     print(f"\n[Setup] Running {len(prompt_pairs)} prompt pairs across {len(LAYERS_TO_CACHE)} layers")
+    print(f"[Setup] Task counts: {dataset_summary['task_type_counts']}")
+    print(f"[Setup] Control counts: {dataset_summary['control_type_counts']}")
     print(f"[Setup] Saving results to {SAVE_DIR}\n")
 
     for pair in tqdm(prompt_pairs, desc="Prompt pairs"):
@@ -401,6 +423,10 @@ def run_experiment():
             "source_url": pair.get("source_url"),
             "source_date": pair.get("source_date"),
             "risk_theme": pair.get("risk_theme"),
+            "contrast_type": pair.get("contrast_type", "semantic_monitoring"),
+            "control_type": pair.get("control_type", "standard_monitoring"),
+            "safety_domain": pair.get("safety_domain"),
+            "include_in_probe": pair.get("include_in_probe", True),
             "mean_pooled_activations": {
                 str(layer): {
                     "normal": mean_pool_activation(normal_cache[layer]),
@@ -439,7 +465,7 @@ def run_experiment():
 
     # Save results
     results_path = SAVE_DIR / "exp001_results.json"
-    with open(results_path, "w") as f:
+    with open(results_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
 
     print("\n" + "=" * 60)
@@ -456,13 +482,18 @@ def run_experiment():
 
     # Write summary to markdown
     summary_path = SAVE_DIR / "exp001_summary.md"
-    with open(summary_path, "w") as f:
+    with open(summary_path, "w", encoding="utf-8") as f:
         f.write("# Experiment 001 Results\n\n")
         f.write("## Setup\n")
         f.write(f"- Model: {MODEL_NAME}\n")
         f.write(f"- Dataset source: {dataset_source}\n")
         f.write(f"- Prompt pairs: {len(prompt_pairs)}\n")
         f.write(f"- Layers analyzed: {len(LAYERS_TO_CACHE)}\n\n")
+        f.write("## Dataset Composition\n")
+        f.write(f"- Task counts: {dataset_summary['task_type_counts']}\n")
+        f.write(f"- Control counts: {dataset_summary['control_type_counts']}\n")
+        f.write(f"- Contrast counts: {dataset_summary['contrast_type_counts']}\n")
+        f.write(f"- Probe inclusion: {dataset_summary['probe_inclusion_counts']}\n\n")
         f.write("## Aggregate Findings\n")
         f.write(f"- Mean logit difference: {results['aggregate']['mean_logit_diff']:.4f}\n")
         f.write(f"- Std dev: {results['aggregate']['std_logit_diff']:.4f}\n")

@@ -13,46 +13,47 @@
 - [x] Scaffold exp001 and exp002 experiments
 
 ### Week 2 — Tooling
-- [ ] Install TransformerLens + dependencies
-- [ ] Verify activation caching works on GPT-2 small
-- [ ] Test patching: can we change output by patching activations?
-- [ ] Establish baseline: what does "normal" activation look like?
+- [x] Install TransformerLens + dependencies
+- [x] Verify activation caching works on GPT-2 small
+- [x] Test patching: can we change output by patching activations?
+- [x] Establish baseline: what does "normal" activation look like?
 
-**Gate criterion:** Can we reliably cache and patch activations in GPT-2 small?
+**Gate criterion:** Can we reliably cache and patch activations in GPT-2 small? **Passed.**
 
 ### Week 3 — AVB-lite v0.1
-- [ ] Design 20 initial prompt pairs (watched vs unwatched)
-- [ ] Keep tasks harmless — this is a methodology test, not red-teaming
-- [ ] Categories: honesty, refusal quality, preference consistency, evaluation awareness
+- [x] Design 20 initial prompt pairs (watched vs unwatched)
+- [x] Expand to 50 source-tagged pairs with lexical controls
+- [x] Keep tasks harmless — this is a methodology test, not red-teaming
+- [x] Categories: honesty, refusal quality, preference consistency, evaluation awareness, hidden trigger
 - [ ] Validate: do watched/unwatched pairs produce similar outputs?
 
 **Gate criterion:** Can we construct prompt pairs where behavior is identical but context differs?
 
 ### Week 4 — First Data Run
-- [ ] Run exp001 on GPT-2 small with 20 prompt pairs
-- [ ] Measure: logit differences, activation distances, layer localization
-- [ ] Identify: which layers show the strongest watched/unwatched signal?
-- [ ] Document findings in research_log.md
+- [x] Run exp001 on GPT-2 small with 50 prompt pairs
+- [x] Measure: logit differences, activation distances, layer localization
+- [x] Identify: which layers show the strongest watched/unwatched signal?
+- [x] Document findings in research_log.md
 
-**Gate criterion:** Do watched vs unwatched prompts produce measurable activation differences?
+**Gate criterion:** Do watched vs unwatched prompts produce measurable activation differences? **Passed.**
 
 ---
 
 ## Phase 2: Scale (Days 31–60)
 
 ### Week 5–6 — Probe Training
-- [ ] Train linear probes on cached activations
-- [ ] Test: can a probe classify watched vs unwatched above chance?
-- [ ] Identify: which layers are most discriminative?
-- [ ] Compare: single-layer vs multi-layer probe accuracy
+- [x] Train linear probes on cached activations
+- [x] Test: can a probe classify watched vs unwatched above chance?
+- [x] Identify: which layers are most discriminative?
+- [x] Compare: single-layer vs multi-layer probe accuracy
 
-**Gate criterion:** Probe accuracy > 65% on held-out test set?
+**Gate criterion:** Probe accuracy > 65% on held-out test set? **Passed on GPT-2 small.**
 
 ### Week 7–8 — Scale to Larger Models
 - [ ] Move experiments to 7B–13B open models (Llama 3.2 1B, Qwen2.5 0.5B)
 - [ ] Test: does evaluation-awareness signal scale with model capability?
 - [ ] Compare: are larger models more "aware" of being evaluated?
-- [ ] Refine AVB-lite based on initial findings
+- [x] Refine AVB-lite based on initial findings
 
 **Gate criterion:** Larger models show stronger/more consistent evaluation-awareness signal?
 
@@ -118,4 +119,4 @@ The research has three possible outcomes, all useful:
 
 ---
 
-*Last updated: 2026-05-02*
+*Last updated: 2026-05-09*

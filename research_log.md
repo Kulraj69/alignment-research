@@ -20,6 +20,58 @@ Tracking experiments, findings, and decisions.
 
 ---
 
+## 2026-05-09 — Exp005: AVB-lite 50 + Lexical Controls + Dashboard
+
+**Hypothesis:** Expanding AVB-lite with source-tagged safety prompts plus explicit lexical/style controls will reduce small-sample overconfidence and make watched/unwatched separability easier to interpret.
+
+**Setup:**
+- Expanded `avb_lite/real_world_pairs_v1.jsonl` from 20 to 50 source-tagged pairs.
+- Added control metadata:
+  - 30 standard monitoring pairs
+  - 12 lexical-matched monitoring pairs
+  - 8 style-only controls with `include_in_probe=false`
+- Added `scripts/validate_avb_lite.py` for schema, source, category, and control checks.
+- Added `scripts/build_results_dashboard.py` and generated `reports/cvat_dashboard_latest.md`.
+- Refreshed real-world signal artifacts for 2026-05-09.
+- Reran the full pipeline via `scripts/run_research_next_steps.sh`.
+
+**Results:**
+- **Dataset validation:**
+  - 50/50 rows are source-tagged.
+  - Task counts: evaluation_awareness 12, refusal_consistency 11, honesty_vs_appearing_honest 10, preference_consistency 9, hidden_trigger 8.
+  - Primary-probe pairs: 42; style-only controls excluded: 8.
+- **Exp001 (50 pairs):**
+  - Mean logit diff: **0.6651**
+  - Std: **0.5425**
+  - Signal layers: **3-11**
+  - Control breakdown:
+    - standard_monitoring: mean max activation distance **130.1837**
+    - lexical_matched: **22.5155**
+    - style_only: **62.2399**
+- **Exp002 (84 examples = 42 primary pairs x 2):**
+  - pair-grouped pair overlap: **0**
+  - primary pair-grouped combined accuracy (layers 4-7): **100%**
+  - pair-grouped 10-seed combined mean±std: **91.5% ± 4.5%**
+  - best-layer 10-seed mean±std: **95.5% ± 3.5%**
+- **External signals:** refreshed 55 current alignment/safety matches:
+  - OpenAI: 35
+  - Anthropic: 9
+  - arXiv: 11
+
+**Analysis:**
+
+The expanded dataset preserves a strong evaluation-awareness signal while making the uncertainty more honest. The old 20-pair run produced a too-perfect 100% ± 0% probe result. With 42 primary probe pairs and controls, seed-sweep performance is still high but now has visible variance, which is healthier scientifically.
+
+The control breakdown is also informative: standard monitoring prompts create the largest activation shift, lexical-matched prompts create a much smaller shift, and style-only controls sit in between. This suggests the previous signal was not purely a length/style artifact, but style/format changes are nontrivial and should be modeled explicitly.
+
+**Next steps:**
+1. Add generated-output similarity checks so the benchmark can verify behavior is comparable, not just prompt-paired.
+2. Add per-control-type probe evaluation instead of only excluding style controls.
+3. Run the protocol on one larger open model after GPT-2 controls are stable.
+4. Add a compact causal-patching matrix to the dashboard.
+
+---
+
 ## 2026-05-07 — Exp004: Grouped-Eval Upgrade + AVB-lite Real-World v1
 
 **Hypothesis:** Pair-grouped evaluation and source-grounded prompt expansion will improve methodological rigor and make probe metrics more trustworthy.
