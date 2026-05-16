@@ -278,10 +278,18 @@ def mean_pool_activation(activation):
 def patch_activations(model, prompt, source_activations, layer):
     """
     Patch source activations into a prompt at a specific layer.
+
+    Watched and normal prompts usually have different sequence lengths. Keep
+    the target prompt shape fixed and patch only the final-token residual vector
+    so this remains a layer-local intervention instead of whole-sequence
+    replacement.
+
     Returns patched logits.
     """
     def hook_fn(activation, hook):
-        return source_activations[layer]
+        patched = activation.clone()
+        patched[:, -1, :] = source_activations[layer][:, -1, :]
+        return patched
 
     hook_name = get_act_name("resid_pre", layer)
 

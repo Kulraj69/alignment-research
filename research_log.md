@@ -20,6 +20,63 @@ Tracking experiments, findings, and decisions.
 
 ---
 
+## 2026-05-14 — Exp006: Mechanistic Stress Audit + Corrected Patching
+
+**Hypothesis:** A stronger CVAT claim needs to survive control-conditioned stress tests: representation geometry should separate watched/unwatched states, probes should not merely detect arbitrary style shifts, patching effects should vary by layer, and prompt-length confounds should be explicitly measured.
+
+**Setup:**
+- Added `experiments/003_mechanistic_stress_audit/run.py`.
+- Consumed cached Exp001 residual activations instead of rerunning the model for geometry/probe diagnostics.
+- Added:
+  - 20-seed pair-grouped probe audit over primary pairs.
+  - Standard-monitoring and lexical-matched subset probes.
+  - Standard-to-lexical and lexical-to-standard transfer tests.
+  - Style-only negative-control false-positive test.
+  - PCA-2 silhouette, centroid distance, and Fisher-ratio diagnostics per layer.
+  - Length-gap correlations against activation distance and logit diff.
+  - Patching-effect matrix over sampled layers.
+- Fixed Exp001 patching to use shape-preserving final-token residual replacement instead of whole-sequence replacement, then reran Exp001, Exp002, Exp003, validation, dashboard build, and real-world signal refresh.
+
+**Results:**
+- **Exp003 primary stress audit:**
+  - 20-seed primary combined-probe accuracy: **92.7% +/- 4.3%**
+  - Primary AUC: **97.9% +/- 1.8%**
+  - Standard-monitoring-only accuracy: **100.0% +/- 0.0%**
+  - Lexical-matched-only accuracy: **72.5% +/- 15.2%**
+- **Cross-control transfer:**
+  - Standard-to-lexical accuracy: **54.2%**, AUC **59.7%**
+  - Lexical-to-standard accuracy: **73.3%**, AUC **87.7%**
+- **Negative control:**
+  - Style-only normal-side mean P(watched): **0.0001**
+  - Style-variant mean P(watched): **0.0029**
+  - Style-control probability gap: **0.0028**
+  - Style-variant predicted-watched rate: **0.0%**
+- **Geometry:**
+  - Best PCA-2 silhouette layer: **7** with silhouette **0.3002**
+  - Top geometry layers cluster around **5-10**, matching the mid/late-layer signal story.
+- **Corrected patching matrix:**
+  - Watched-to-normal shifts rise from **0.2311** at layer 0 to **0.6747** at layer 11.
+  - Normal-to-watched shifts rise from **0.1834** at layer 0 to **0.6590** at layer 11.
+  - Degeneracy flag: **false** after shape-preserving patching.
+- **Confound audit:**
+  - Overall char-gap vs max activation distance correlation: **0.9159**
+  - Word-gap vs max activation distance correlation: **0.9048**
+  - Char-gap vs logit diff correlation: **0.3375**
+
+**Analysis:**
+
+This is a real credibility upgrade, not just a better-looking metric. The style-only negative control is reassuring: the watched detector does not simply fire on arbitrary prompt restyling. The corrected patching matrix also now has a meaningful layer profile, with causal logit shifts increasing into late layers rather than appearing as a flat artifact.
+
+The hard caveat is equally important: prompt length remains a serious activation-distance confound. The lexical-matched subset still carries signal, but it is smaller and noisier than the standard-monitoring subset, and standard-to-lexical transfer is weak. The current result should be framed as strong detectability evidence plus partial causal evidence, not as a solved verification method.
+
+**Next steps:**
+1. Expand lexical-matched controls from 12 to at least 50 pairs with stricter token-length matching.
+2. Add generated-output similarity checks so same-behavior claims are measured directly.
+3. Patch all layers, not only sampled layers, and add a per-layer causal-effect plot/table.
+4. Replicate the full Exp001/Exp002/Exp003 protocol on Qwen2.5 0.5B or Llama 3.2 1B.
+
+---
+
 ## 2026-05-09 — Exp005: AVB-lite 50 + Lexical Controls + Dashboard
 
 **Hypothesis:** Expanding AVB-lite with source-tagged safety prompts plus explicit lexical/style controls will reduce small-sample overconfidence and make watched/unwatched separability easier to interpret.

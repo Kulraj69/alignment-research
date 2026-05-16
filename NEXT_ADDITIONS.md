@@ -19,7 +19,8 @@
 
 4. Feature quality upgrade
 - Train probes on real residual vectors (already enabled).
-- Add PCA/UMAP diagnostics to show representation separation per layer.
+- Status: DONE baseline in `exp003` with PCA-2 silhouette, centroid separation, and Fisher-ratio diagnostics per layer.
+- Add UMAP diagnostics later if the dependency is worth it.
 
 ## Priority 2: Broader Empirical Coverage
 
@@ -28,17 +29,19 @@
 - Keep category balance: honesty, refusal, preference consistency, evaluation-awareness, hidden-trigger.
 
 2. Cross-model comparison table
+- Status: READY TO RUN (`experiments/004_evaluator_endogeneity_scaling/run.py` plus `AWS_EVALUATOR_ENDOGENEITY_RUNBOOK.md`)
 - GPT-2 small, Llama 3.2 1B, Qwen2.5 0.5B.
 - Report same metrics for direct comparability.
 
 3. Causal intervention matrix
+- Status: DONE sampled-layer baseline in `exp003` using corrected final-token patching across layers 0, 3, 6, 9, and 11.
 - Patch watched->normal and normal->watched at every layer.
 - Plot layer-by-layer causal effect sizes.
 
 ## Priority 3: Real-World Grounding
 
 1. Weekly external signal refresh
-- Status: DONE for 2026-05-09 (`alignment_signals_2026-05-09.*`)
+- Status: DONE for 2026-05-14 (`alignment_signals_2026-05-14.*`)
 - Run `scripts/fetch_real_world_signals.py` weekly.
 - Use top signals to inspire new prompt templates and threat models.
 
@@ -50,7 +53,7 @@
 
 1. Reproducibility command set
 - Status: DONE (`scripts/run_research_next_steps.sh`)
-- Single command for exp001 + exp002 + report generation.
+- Single command for validation, exp001, exp002, signal refresh, exp003, and report generation.
 
 2. Results dashboard
 - Status: DONE baseline (`reports/cvat_dashboard_latest.md`)
@@ -58,6 +61,7 @@
   - per-layer probe accuracy
   - activation distance profile
   - patching effect sizes
+- Current dashboard now includes the Exp003 stress-audit headline metrics.
 
 3. Release package
 - Code + dataset + experiment config + exact run metadata in one versioned bundle.

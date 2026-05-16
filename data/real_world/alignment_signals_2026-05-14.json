@@ -1,0 +1,1686 @@
+{
+  "generated_at_utc": "2026-05-14T10:17:58Z",
+  "lookback_days": 180,
+  "query": {
+    "openai_rss": "https://openai.com/news/rss.xml",
+    "anthropic_sitemap": "https://www.anthropic.com/sitemap.xml",
+    "arxiv_api_url": "http://export.arxiv.org/api/query?search_query=cat%3Acs.AI+AND+%28all%3A%22alignment%22+OR+all%3A%22ai+safety%22+OR+all%3A%22mechanistic+interpretability%22+OR+all%3A%22deception%22+OR+all%3A%22oversight%22+OR+all%3A%22red+teaming%22+OR+all%3A%22reward+hacking%22+OR+all%3A%22jailbreak%22%29&start=0&max_results=40&sortBy=lastUpdatedDate&sortOrder=descending",
+    "safety_keywords": [
+      "alignment faking",
+      "ai alignment",
+      "alignment safety",
+      "model alignment",
+      "superalignment",
+      "evaluation awareness",
+      "safety",
+      "preparedness",
+      "system card",
+      "red team",
+      "red teaming",
+      "scheming",
+      "deception",
+      "oversight",
+      "reward hacking",
+      "jailbreak",
+      "faithfulness",
+      "mechanistic interpretability",
+      "sleeper agent"
+    ],
+    "ai_context_keywords": [
+      "ai",
+      "artificial intelligence",
+      "language model",
+      "llm",
+      "transformer",
+      "agentic"
+    ],
+    "openai_focus_keywords": [
+      "system card",
+      "preparedness",
+      "model spec",
+      "red team",
+      "bug bounty",
+      "cyber resilience",
+      "safety",
+      "security",
+      "policy",
+      "responsibility"
+    ]
+  },
+  "counts": {
+    "openai": 34,
+    "anthropic": 9,
+    "arxiv": 12,
+    "total": 55
+  },
+  "top_signals": [
+    {
+      "source": "arxiv_api",
+      "title": "Metis: Learning to Jailbreak LLMs via Self-Evolving Metacognitive Policy Optimization",
+      "url": "http://arxiv.org/abs/2605.10067v2",
+      "date": "2026-05-13",
+      "snippet": "Red teaming is critical for uncovering vulnerabilities in Large Language Models (LLMs). While automated methods have improved scalability, existing approaches often rely on static heuristics or stochastic search, rendering them brittle against advanced safety alignment. To address this, we introduce Metis, a framework that reformulates jailbreaking as inference-time policy optimization within an adversarial Partially",
+      "authors": [
+        "Huilin Zhou",
+        "Jian Zhao",
+        "Yilu Zhong",
+        "Zhen Liang",
+        "Xiuyuan Chen",
+        "Yuchen Yuan",
+        "Tianle Zhang",
+        "Chi Zhang",
+        "Lan Zhang",
+        "Xuelong Li"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 7,
+      "safety_score": 4,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "language model",
+        "llm",
+        "red team",
+        "red teaming",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "History Anchors: How Prior Behavior Steers LLM Decisions Toward Unsafe Actions",
+      "url": "http://arxiv.org/abs/2605.13825v1",
+      "date": "2026-05-13",
+      "snippet": "Frontier LLMs are increasingly deployed as agents that pick the next action after a long log of prior tool calls produced by the same or a different model. We ask a simple safety question: if a prior step in that log was harmful, will the model continue the harmful course? We build HistoryAnchor-100, 100 short scenarios across ten high-stakes domains, each pairing three forced harmful prior actions with a free-choice",
+      "authors": [
+        "Alberto G. Rodr\u00edguez Salgado"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Automated alignment is harder than you think",
+      "url": "http://arxiv.org/abs/2605.06390v2",
+      "date": "2026-05-13",
+      "snippet": "A leading proposal for aligning artificial superintelligence (ASI) is to use AI agents to automate an increasing fraction of alignment research as capabilities improve. We argue that, even when research agents are not scheming to deliberately sabotage alignment work, this plan could produce compelling but catastrophically misleading safety assessments resulting in the unintentional deployment of misaligned AI. This c",
+      "authors": [
+        "Aleksandr Bowkis",
+        "Marie Davidsen Buhl",
+        "Jacob Pfau",
+        "Geoffrey Irving"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 3,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "oversight",
+        "safety",
+        "scheming"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Agent^2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?",
+      "url": "http://arxiv.org/abs/2604.10547v2",
+      "date": "2026-05-13",
+      "snippet": "We introduce Agent2 RL-Bench, a compact diagnostic benchmark for evaluating agentic RL post-training, which tests whether LLM agents can autonomously design, implement, debug, and execute post-training pipelines that improve foundation models. RL post-training increasingly drives model alignment and specialization, yet existing benchmarks are largely static, rewarding supervised fine-tuning or script generation witho",
+      "authors": [
+        "Wanyi Chen",
+        "Xiao Yang",
+        "Xu Yang",
+        "Tianming Sha",
+        "Qizheng Li",
+        "Zhuo Wang",
+        "Bowen Xian",
+        "Fang Kong",
+        "Weiqing Liu",
+        "Jiang Bian"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "llm",
+        "model alignment"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Tracing Persona Vectors Through LLM Pretraining",
+      "url": "http://arxiv.org/abs/2605.13329v1",
+      "date": "2026-05-13",
+      "snippet": "How large language models internally represent high-level behaviors is a core interpretability question with direct relevance to AI safety: it determines what we can detect, audit, or intervene on. Recent work has shown that traits such as evil or sycophancy correspond to linear directions in the internal activations, the so-called persona vectors. Although these vectors are now routinely utilized to inspect and stee",
+      "authors": [
+        "Viktor Moskvoretskii",
+        "Dominik Glandorf",
+        "Jorge Medina Moreira",
+        "Tanja K\u00e4ser",
+        "Robert West"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Automated Rubrics for Reliable Evaluation of Medical Dialogue Systems",
+      "url": "http://arxiv.org/abs/2601.15161v2",
+      "date": "2026-05-13",
+      "snippet": "Large Language Models (LLMs) are increasingly used for clinical decision support, where hallucinations and unsafe suggestions may pose direct risks to patient safety. These risks are hard to assess: subtle clinical errors are often missed by generic metrics and LLM judges using general criteria, while expert-authored fine-grained rubrics are expensive and difficult to scale. In this paper, we propose a retrieval-augm",
+      "authors": [
+        "Yinzhu Chen",
+        "Abdine Maiga",
+        "Hossein A. Rahmani",
+        "Emine Yilmaz"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Continuously hardening ChatGPT Atlas against prompt injection",
+      "url": "https://openai.com/index/hardening-atlas-against-prompt-injection",
+      "date": "2025-12-22",
+      "snippet": "OpenAI is strengthening ChatGPT Atlas against prompt injection attacks using automated red teaming trained with reinforcement learning. This proactive discover-and-patch loop helps identify novel exploits early and harden the browser agent\u2019s defenses as AI becomes more agentic.",
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "red team",
+        "red teaming"
+      ],
+      "openai_focus_keywords": [
+        "red team"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Sleeper Agents Training Deceptive Llms That Persist Through Safety Training",
+      "url": "https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety",
+        "sleeper agent"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Negation Neglect: When models fail to learn negations in training",
+      "url": "http://arxiv.org/abs/2605.13829v1",
+      "date": "2026-05-13",
+      "snippet": "We introduce Negation Neglect, where finetuning LLMs on documents that flag a claim as false makes them believe the claim is true. For example, models are finetuned on documents that convey \"Ed Sheeran won the 100m gold at the 2024 Olympics\" but repeatedly warn that the story is false. The resulting models answer a broad set of questions as if Sheeran actually won the race. This occurs despite models recognizing the ",
+      "authors": [
+        "Harry Mayne",
+        "Lev McKinney",
+        "Jan Dubi\u0144ski",
+        "Adam Karvonen",
+        "James Chua",
+        "Owain Evans"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Humanwashing -- It Should Leave You Feeling Dirty",
+      "url": "http://arxiv.org/abs/2605.13723v1",
+      "date": "2026-05-13",
+      "snippet": "The phrase 'human in the loop' is increasingly used to imply a sense of safety in relation to AI decision systems. It shouldn't. There are contexts where it can be applied appropriately, but these are not in the deployed decision systems we see dominating today. Human oversight of AI decision processes is one of the most popular proposals for addressing concerns, especially about bias, discrimination, misinformation,",
+      "authors": [
+        "Ben Wilson",
+        "Matimba Swana",
+        "Peter Winter",
+        "Matt Roach"
+      ],
+      "categories": [
+        "cs.HC",
+        "cs.AI",
+        "cs.LG",
+        "cs.SI"
+      ],
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "oversight",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "HLS-Seek: QoR-Aware Code Generation for High-Level Synthesis via Proxy Comparative Reward Reinforcement Learning",
+      "url": "http://arxiv.org/abs/2605.13536v1",
+      "date": "2026-05-13",
+      "snippet": "High-Level Synthesis (HLS) compiles algorithmic C/C++ descriptions into hardware, with Quality of Results (QoR) -- latency and resource utilization -- critically governed by pragma configurations and code structure. Existing LLM-based HLS approaches train for functional correctness but ignore QoR entirely. We observe that reinforcement learning (RL) for HLS does not require absolute synthesis results -- only relative",
+      "authors": [
+        "Qingyun Zou",
+        "Feng Yu",
+        "Hongshi Tan",
+        "Yao Chen",
+        "Bingsheng He",
+        "WengFai Wong"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "reward hacking"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Explaining and Breaking the Safety-Helpfulness Ceiling via Preference Dimensional Expansion",
+      "url": "http://arxiv.org/abs/2605.11679v2",
+      "date": "2026-05-13",
+      "snippet": "In the realm of multi-objective alignment for large language models, balancing disparate human preferences often manifests as a zero-sum conflict. Specifically, the intrinsic tension between competing goals dictates that aggressively optimizing for one metric (e.g., helpfulness) frequently incurs a substantial penalty on another (e.g., harmlessness). While prior work mainly focuses on data selection, parameter mergin",
+      "authors": [
+        "ShiYing Huang",
+        "Liang Lin",
+        "Yuer Li",
+        "Kaiwen Luo",
+        "Zhenhong Zhou",
+        "An Zhang",
+        "Junhao Dong",
+        "Kun Wang",
+        "Zhigang Zeng"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.5 Bio Bug Bounty",
+      "url": "https://openai.com/index/gpt-5-5-bio-bug-bounty",
+      "date": "2026-04-23",
+      "snippet": "Explore the GPT-5.5 Bio Bug Bounty: a red-teaming challenge to find universal jailbreaks for bio safety risks, with rewards up to $25,000.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "bug bounty",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing the OpenAI Safety Bug Bounty program",
+      "url": "https://openai.com/index/safety-bug-bounty",
+      "date": "2026-03-25",
+      "snippet": "OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.",
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "bug bounty",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Improving instruction hierarchy in frontier LLMs",
+      "url": "https://openai.com/index/instruction-hierarchy-challenge",
+      "date": "2026-03-10",
+      "snippet": "IH-Challenge trains models to prioritize trusted instructions, improving instruction hierarchy, safety steerability, and resistance to prompt injection attacks.",
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Advancing independent research on AI alignment",
+      "url": "https://openai.com/index/advancing-independent-research-ai-alignment",
+      "date": "2026-02-19",
+      "snippet": "OpenAI commits $7.5M to The Alignment Project to fund independent AI alignment research, strengthening global efforts to address AGI safety and security risks.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "ai alignment",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety",
+        "security"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Update to GPT-5 System Card: GPT-5.2",
+      "url": "https://openai.com/index/gpt-5-system-card-update-gpt-5-2",
+      "date": "2025-12-11",
+      "snippet": "GPT-5.2 is the latest model family in the GPT-5 series. The comprehensive safety mitigation approach for these models is largely the same as that described in the GPT-5 System Card and GPT-5.1 System Card. Like OpenAI\u2019s other models, the GPT-5.2 models were trained on diverse datasets, including information that is publicly available on the internet, information that we partner with third parties to access, and information that our users or human trainers and researchers provide or generate.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.1-Codex-Max System Card",
+      "url": "https://openai.com/index/gpt-5-1-codex-max-system-card",
+      "date": "2025-11-19",
+      "snippet": "This system card outlines the comprehensive safety measures implemented for GPT\u20115.1-CodexMax. It details both model-level mitigations, such as specialized safety training for harmful tasks and prompt injections, and product-level mitigations like agent sandboxing and configurable network access.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card",
+        "safety"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Red Teaming Language Models To Reduce Harms Methods Scaling Behaviors And Lessons Learned",
+      "url": "https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "language model",
+        "red team",
+        "red teaming"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "How to Interpret Agent Behavior",
+      "url": "http://arxiv.org/abs/2605.13625v1",
+      "date": "2026-05-13",
+      "snippet": "Autonomous agents such as Claude Code and Codex now operate for hours or even days. Understanding their runtime behavior has become critical for downstream tasks such as diagnosing inefficiencies, fixing bugs, and ensuring better oversight. A primary way to gain this understanding is analyzing the reasoning trajectories and execution traces these agents generate. Yet such data remains in unstructured natural-language",
+      "authors": [
+        "Jie Gao",
+        "Kaiser Sun",
+        "Jen-tse Huang",
+        "Katherine Van Koevering",
+        "Sijie Ji",
+        "Heyuan Huang",
+        "Weiyan Shi",
+        "Zhuoran Lu",
+        "Ziang Xiao",
+        "Daniel Khashabi",
+        "Mark Dredze"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "oversight"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "TMPO: Trajectory Matching Policy Optimization for Diverse and Efficient Diffusion Alignment",
+      "url": "http://arxiv.org/abs/2605.10983v2",
+      "date": "2026-05-13",
+      "snippet": "Reinforcement learning (RL) has shown extraordinary potential in aligning diffusion models to downstream tasks, yet most of them still suffer from significant reward hacking, which degrades generative diversity and quality by inducing visual mode collapse and amplifying unreliable rewards. We identify the root cause as the mode-seeking nature of these methods, which maximize expected reward without effectively constr",
+      "authors": [
+        "Jiaming Li",
+        "Chenyu Zhu",
+        "Nanxi Yi",
+        "Youjun Bao",
+        "Li Sun",
+        "Quanying Lv",
+        "Xiang Fang",
+        "Daizong Liu",
+        "Jianjun Li",
+        "Kun He",
+        "Bowen Zhou",
+        "Zhiyuan Ma"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "reward hacking"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Advancing youth safety and wellbeing in EMEA",
+      "url": "https://openai.com/index/advancing-youth-safety-in-emea",
+      "date": "2026-05-05",
+      "snippet": "Explore OpenAI\u2019s European Youth Safety Blueprint and EMEA Youth & Wellbeing Grants, advancing safe, responsible AI for teens, families, and educators.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Our commitment to community safety",
+      "url": "https://openai.com/index/our-commitment-to-community-safety",
+      "date": "2026-04-28",
+      "snippet": "Learn how OpenAI protects community safety in ChatGPT through model safeguards, misuse detection, policy enforcement, and collaboration with safety experts.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety",
+        "policy"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Responsible and safe use of AI",
+      "url": "https://openai.com/academy/responsible-and-safe-use",
+      "date": "2026-04-10",
+      "snippet": "Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing the Child Safety Blueprint",
+      "url": "https://openai.com/index/introducing-child-safety-blueprint",
+      "date": "2026-04-08",
+      "snippet": "Discover OpenAI\u2019s Child Safety Blueprint\u2014a roadmap for building AI responsibly with safeguards, age-appropriate design, and collaboration to protect and empower young people online.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    }
+  ],
+  "all_signals": [
+    {
+      "source": "arxiv_api",
+      "title": "Metis: Learning to Jailbreak LLMs via Self-Evolving Metacognitive Policy Optimization",
+      "url": "http://arxiv.org/abs/2605.10067v2",
+      "date": "2026-05-13",
+      "snippet": "Red teaming is critical for uncovering vulnerabilities in Large Language Models (LLMs). While automated methods have improved scalability, existing approaches often rely on static heuristics or stochastic search, rendering them brittle against advanced safety alignment. To address this, we introduce Metis, a framework that reformulates jailbreaking as inference-time policy optimization within an adversarial Partially",
+      "authors": [
+        "Huilin Zhou",
+        "Jian Zhao",
+        "Yilu Zhong",
+        "Zhen Liang",
+        "Xiuyuan Chen",
+        "Yuchen Yuan",
+        "Tianle Zhang",
+        "Chi Zhang",
+        "Lan Zhang",
+        "Xuelong Li"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 7,
+      "safety_score": 4,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "language model",
+        "llm",
+        "red team",
+        "red teaming",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "History Anchors: How Prior Behavior Steers LLM Decisions Toward Unsafe Actions",
+      "url": "http://arxiv.org/abs/2605.13825v1",
+      "date": "2026-05-13",
+      "snippet": "Frontier LLMs are increasingly deployed as agents that pick the next action after a long log of prior tool calls produced by the same or a different model. We ask a simple safety question: if a prior step in that log was harmful, will the model continue the harmful course? We build HistoryAnchor-100, 100 short scenarios across ten high-stakes domains, each pairing three forced harmful prior actions with a free-choice",
+      "authors": [
+        "Alberto G. Rodr\u00edguez Salgado"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Automated alignment is harder than you think",
+      "url": "http://arxiv.org/abs/2605.06390v2",
+      "date": "2026-05-13",
+      "snippet": "A leading proposal for aligning artificial superintelligence (ASI) is to use AI agents to automate an increasing fraction of alignment research as capabilities improve. We argue that, even when research agents are not scheming to deliberately sabotage alignment work, this plan could produce compelling but catastrophically misleading safety assessments resulting in the unintentional deployment of misaligned AI. This c",
+      "authors": [
+        "Aleksandr Bowkis",
+        "Marie Davidsen Buhl",
+        "Jacob Pfau",
+        "Geoffrey Irving"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 3,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "oversight",
+        "safety",
+        "scheming"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Agent^2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?",
+      "url": "http://arxiv.org/abs/2604.10547v2",
+      "date": "2026-05-13",
+      "snippet": "We introduce Agent2 RL-Bench, a compact diagnostic benchmark for evaluating agentic RL post-training, which tests whether LLM agents can autonomously design, implement, debug, and execute post-training pipelines that improve foundation models. RL post-training increasingly drives model alignment and specialization, yet existing benchmarks are largely static, rewarding supervised fine-tuning or script generation witho",
+      "authors": [
+        "Wanyi Chen",
+        "Xiao Yang",
+        "Xu Yang",
+        "Tianming Sha",
+        "Qizheng Li",
+        "Zhuo Wang",
+        "Bowen Xian",
+        "Fang Kong",
+        "Weiqing Liu",
+        "Jiang Bian"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "llm",
+        "model alignment"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Tracing Persona Vectors Through LLM Pretraining",
+      "url": "http://arxiv.org/abs/2605.13329v1",
+      "date": "2026-05-13",
+      "snippet": "How large language models internally represent high-level behaviors is a core interpretability question with direct relevance to AI safety: it determines what we can detect, audit, or intervene on. Recent work has shown that traits such as evil or sycophancy correspond to linear directions in the internal activations, the so-called persona vectors. Although these vectors are now routinely utilized to inspect and stee",
+      "authors": [
+        "Viktor Moskvoretskii",
+        "Dominik Glandorf",
+        "Jorge Medina Moreira",
+        "Tanja K\u00e4ser",
+        "Robert West"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Automated Rubrics for Reliable Evaluation of Medical Dialogue Systems",
+      "url": "http://arxiv.org/abs/2601.15161v2",
+      "date": "2026-05-13",
+      "snippet": "Large Language Models (LLMs) are increasingly used for clinical decision support, where hallucinations and unsafe suggestions may pose direct risks to patient safety. These risks are hard to assess: subtle clinical errors are often missed by generic metrics and LLM judges using general criteria, while expert-authored fine-grained rubrics are expensive and difficult to scale. In this paper, we propose a retrieval-augm",
+      "authors": [
+        "Yinzhu Chen",
+        "Abdine Maiga",
+        "Hossein A. Rahmani",
+        "Emine Yilmaz"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "score": 4,
+      "safety_score": 1,
+      "ai_context_score": 3,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Continuously hardening ChatGPT Atlas against prompt injection",
+      "url": "https://openai.com/index/hardening-atlas-against-prompt-injection",
+      "date": "2025-12-22",
+      "snippet": "OpenAI is strengthening ChatGPT Atlas against prompt injection attacks using automated red teaming trained with reinforcement learning. This proactive discover-and-patch loop helps identify novel exploits early and harden the browser agent\u2019s defenses as AI becomes more agentic.",
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "red team",
+        "red teaming"
+      ],
+      "openai_focus_keywords": [
+        "red team"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Sleeper Agents Training Deceptive Llms That Persist Through Safety Training",
+      "url": "https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 4,
+      "safety_score": 2,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety",
+        "sleeper agent"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Negation Neglect: When models fail to learn negations in training",
+      "url": "http://arxiv.org/abs/2605.13829v1",
+      "date": "2026-05-13",
+      "snippet": "We introduce Negation Neglect, where finetuning LLMs on documents that flag a claim as false makes them believe the claim is true. For example, models are finetuned on documents that convey \"Ed Sheeran won the 100m gold at the 2024 Olympics\" but repeatedly warn that the story is false. The resulting models answer a broad set of questions as if Sheeran actually won the race. This occurs despite models recognizing the ",
+      "authors": [
+        "Harry Mayne",
+        "Lev McKinney",
+        "Jan Dubi\u0144ski",
+        "Adam Karvonen",
+        "James Chua",
+        "Owain Evans"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Humanwashing -- It Should Leave You Feeling Dirty",
+      "url": "http://arxiv.org/abs/2605.13723v1",
+      "date": "2026-05-13",
+      "snippet": "The phrase 'human in the loop' is increasingly used to imply a sense of safety in relation to AI decision systems. It shouldn't. There are contexts where it can be applied appropriately, but these are not in the deployed decision systems we see dominating today. Human oversight of AI decision processes is one of the most popular proposals for addressing concerns, especially about bias, discrimination, misinformation,",
+      "authors": [
+        "Ben Wilson",
+        "Matimba Swana",
+        "Peter Winter",
+        "Matt Roach"
+      ],
+      "categories": [
+        "cs.HC",
+        "cs.AI",
+        "cs.LG",
+        "cs.SI"
+      ],
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "oversight",
+        "safety"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "HLS-Seek: QoR-Aware Code Generation for High-Level Synthesis via Proxy Comparative Reward Reinforcement Learning",
+      "url": "http://arxiv.org/abs/2605.13536v1",
+      "date": "2026-05-13",
+      "snippet": "High-Level Synthesis (HLS) compiles algorithmic C/C++ descriptions into hardware, with Quality of Results (QoR) -- latency and resource utilization -- critically governed by pragma configurations and code structure. Existing LLM-based HLS approaches train for functional correctness but ignore QoR entirely. We observe that reinforcement learning (RL) for HLS does not require absolute synthesis results -- only relative",
+      "authors": [
+        "Qingyun Zou",
+        "Feng Yu",
+        "Hongshi Tan",
+        "Yao Chen",
+        "Bingsheng He",
+        "WengFai Wong"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "reward hacking"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "Explaining and Breaking the Safety-Helpfulness Ceiling via Preference Dimensional Expansion",
+      "url": "http://arxiv.org/abs/2605.11679v2",
+      "date": "2026-05-13",
+      "snippet": "In the realm of multi-objective alignment for large language models, balancing disparate human preferences often manifests as a zero-sum conflict. Specifically, the intrinsic tension between competing goals dictates that aggressively optimizing for one metric (e.g., helpfulness) frequently incurs a substantial penalty on another (e.g., harmlessness). While prior work mainly focuses on data selection, parameter mergin",
+      "authors": [
+        "ShiYing Huang",
+        "Liang Lin",
+        "Yuer Li",
+        "Kaiwen Luo",
+        "Zhenhong Zhou",
+        "An Zhang",
+        "Junhao Dong",
+        "Kun Wang",
+        "Zhigang Zeng"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "language model",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.5 Bio Bug Bounty",
+      "url": "https://openai.com/index/gpt-5-5-bio-bug-bounty",
+      "date": "2026-04-23",
+      "snippet": "Explore the GPT-5.5 Bio Bug Bounty: a red-teaming challenge to find universal jailbreaks for bio safety risks, with rewards up to $25,000.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "jailbreak",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "bug bounty",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing the OpenAI Safety Bug Bounty program",
+      "url": "https://openai.com/index/safety-bug-bounty",
+      "date": "2026-03-25",
+      "snippet": "OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.",
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "agentic",
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "bug bounty",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Improving instruction hierarchy in frontier LLMs",
+      "url": "https://openai.com/index/instruction-hierarchy-challenge",
+      "date": "2026-03-10",
+      "snippet": "IH-Challenge trains models to prioritize trusted instructions, improving instruction hierarchy, safety steerability, and resistance to prompt injection attacks.",
+      "score": 3,
+      "safety_score": 1,
+      "ai_context_score": 2,
+      "matched_keywords": [
+        "ai",
+        "llm",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Advancing independent research on AI alignment",
+      "url": "https://openai.com/index/advancing-independent-research-ai-alignment",
+      "date": "2026-02-19",
+      "snippet": "OpenAI commits $7.5M to The Alignment Project to fund independent AI alignment research, strengthening global efforts to address AGI safety and security risks.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "ai alignment",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety",
+        "security"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Update to GPT-5 System Card: GPT-5.2",
+      "url": "https://openai.com/index/gpt-5-system-card-update-gpt-5-2",
+      "date": "2025-12-11",
+      "snippet": "GPT-5.2 is the latest model family in the GPT-5 series. The comprehensive safety mitigation approach for these models is largely the same as that described in the GPT-5 System Card and GPT-5.1 System Card. Like OpenAI\u2019s other models, the GPT-5.2 models were trained on diverse datasets, including information that is publicly available on the internet, information that we partner with third parties to access, and information that our users or human trainers and researchers provide or generate.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.1-Codex-Max System Card",
+      "url": "https://openai.com/index/gpt-5-1-codex-max-system-card",
+      "date": "2025-11-19",
+      "snippet": "This system card outlines the comprehensive safety measures implemented for GPT\u20115.1-CodexMax. It details both model-level mitigations, such as specialized safety training for harmful tasks and prompt injections, and product-level mitigations like agent sandboxing and configurable network access.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card",
+        "safety"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Red Teaming Language Models To Reduce Harms Methods Scaling Behaviors And Lessons Learned",
+      "url": "https://www.anthropic.com/research/red-teaming-language-models-to-reduce-harms-methods-scaling-behaviors-and-lessons-learned",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 3,
+      "safety_score": 2,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "language model",
+        "red team",
+        "red teaming"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "How to Interpret Agent Behavior",
+      "url": "http://arxiv.org/abs/2605.13625v1",
+      "date": "2026-05-13",
+      "snippet": "Autonomous agents such as Claude Code and Codex now operate for hours or even days. Understanding their runtime behavior has become critical for downstream tasks such as diagnosing inefficiencies, fixing bugs, and ensuring better oversight. A primary way to gain this understanding is analyzing the reasoning trajectories and execution traces these agents generate. Yet such data remains in unstructured natural-language",
+      "authors": [
+        "Jie Gao",
+        "Kaiser Sun",
+        "Jen-tse Huang",
+        "Katherine Van Koevering",
+        "Sijie Ji",
+        "Heyuan Huang",
+        "Weiyan Shi",
+        "Zhuoran Lu",
+        "Ziang Xiao",
+        "Daniel Khashabi",
+        "Mark Dredze"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "oversight"
+      ]
+    },
+    {
+      "source": "arxiv_api",
+      "title": "TMPO: Trajectory Matching Policy Optimization for Diverse and Efficient Diffusion Alignment",
+      "url": "http://arxiv.org/abs/2605.10983v2",
+      "date": "2026-05-13",
+      "snippet": "Reinforcement learning (RL) has shown extraordinary potential in aligning diffusion models to downstream tasks, yet most of them still suffer from significant reward hacking, which degrades generative diversity and quality by inducing visual mode collapse and amplifying unreliable rewards. We identify the root cause as the mode-seeking nature of these methods, which maximize expected reward without effectively constr",
+      "authors": [
+        "Jiaming Li",
+        "Chenyu Zhu",
+        "Nanxi Yi",
+        "Youjun Bao",
+        "Li Sun",
+        "Quanying Lv",
+        "Xiang Fang",
+        "Daizong Liu",
+        "Jianjun Li",
+        "Kun He",
+        "Bowen Zhou",
+        "Zhiyuan Ma"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "reward hacking"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Advancing youth safety and wellbeing in EMEA",
+      "url": "https://openai.com/index/advancing-youth-safety-in-emea",
+      "date": "2026-05-05",
+      "snippet": "Explore OpenAI\u2019s European Youth Safety Blueprint and EMEA Youth & Wellbeing Grants, advancing safe, responsible AI for teens, families, and educators.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Our commitment to community safety",
+      "url": "https://openai.com/index/our-commitment-to-community-safety",
+      "date": "2026-04-28",
+      "snippet": "Learn how OpenAI protects community safety in ChatGPT through model safeguards, misuse detection, policy enforcement, and collaboration with safety experts.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety",
+        "policy"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Responsible and safe use of AI",
+      "url": "https://openai.com/academy/responsible-and-safe-use",
+      "date": "2026-04-10",
+      "snippet": "Learn how to use AI responsibly with best practices for safety, accuracy, and transparency when using tools like ChatGPT.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing the Child Safety Blueprint",
+      "url": "https://openai.com/index/introducing-child-safety-blueprint",
+      "date": "2026-04-08",
+      "snippet": "Discover OpenAI\u2019s Child Safety Blueprint\u2014a roadmap for building AI responsibly with safeguards, age-appropriate design, and collaboration to protect and empower young people online.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Announcing the OpenAI Safety Fellowship",
+      "url": "https://openai.com/index/introducing-openai-safety-fellowship",
+      "date": "2026-04-06",
+      "snippet": "A pilot program to support independent safety and alignment research and develop the next generation of talent",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Inside our approach to the Model Spec",
+      "url": "https://openai.com/index/our-approach-to-the-model-spec",
+      "date": "2026-03-25",
+      "snippet": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "model spec",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Helping developers build safer AI experiences for teens",
+      "url": "https://openai.com/index/teen-safety-policies-gpt-oss-safeguard",
+      "date": "2026-03-24",
+      "snippet": "OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "How we monitor internal coding agents for misalignment",
+      "url": "https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment",
+      "date": "2026-03-19",
+      "snippet": "How OpenAI uses chain-of-thought monitoring to study misalignment in internal coding agents\u2014analyzing real-world deployments to detect risks and strengthen AI safety safeguards.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first",
+      "url": "https://openai.com/index/japan-teen-safety-blueprint",
+      "date": "2026-03-17",
+      "snippet": "OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Reasoning models struggle to control their chains of thought, and that\u2019s good",
+      "url": "https://openai.com/index/reasoning-models-chain-of-thought-controllability",
+      "date": "2026-03-05",
+      "snippet": "OpenAI introduces CoT-Control and finds reasoning models struggle to control their chains of thought, reinforcing monitorability as an AI safety safeguard.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Our agreement with the Department of War",
+      "url": "https://openai.com/index/our-agreement-with-the-department-of-war",
+      "date": "2026-02-28",
+      "snippet": "Details on OpenAI\u2019s contract with the Department of War, outlining safety red lines, legal protections, and how AI systems will be deployed in classified environments.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "An update on our mental health-related work",
+      "url": "https://openai.com/index/update-on-mental-health-related-work",
+      "date": "2026-02-27",
+      "snippet": "OpenAI shares updates on its mental health safety work, including parental controls, trusted contacts, improved distress detection, and recent litigation developments.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Bringing ChatGPT to GenAI.mil",
+      "url": "https://openai.com/index/bringing-chatgpt-to-genaimil",
+      "date": "2026-02-09",
+      "snippet": "OpenAI for Government announces the deployment of a custom ChatGPT on GenAI.mil, bringing secure, safety-forward AI to U.S. defense teams.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Making AI work for everyone, everywhere: our approach to localization",
+      "url": "https://openai.com/index/our-approach-to-localization",
+      "date": "2026-02-06",
+      "snippet": "OpenAI shares its approach to AI localization, showing how globally shared frontier models can be adapted to local languages, laws, and cultures without compromising safety.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.3-Codex System Card",
+      "url": "https://openai.com/index/gpt-5-3-codex-system-card",
+      "date": "2026-02-05",
+      "snippet": "GPT\u20115.3-Codex is the most capable agentic coding model to date, combining the frontier coding performance of GPT\u20115.2-Codex with the reasoning and professional knowledge capabilities of GPT\u20115.2.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "agentic",
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "EMEA Youth & Wellbeing Grant",
+      "url": "https://openai.com/index/emea-youth-and-wellbeing-grant",
+      "date": "2026-01-28",
+      "snippet": "Apply for the EMEA Youth & Wellbeing Grant, a \u20ac500,000 program funding NGOs and researchers advancing youth safety and wellbeing in the age of AI.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Updating our Model Spec with teen protections",
+      "url": "https://openai.com/index/updating-model-spec-with-teen-protections",
+      "date": "2025-12-18",
+      "snippet": "OpenAI is updating its Model Spec with new Under-18 Principles that define how ChatGPT should support teens with safe, age-appropriate guidance grounded in developmental science. The update strengthens guardrails, clarifies expected model behavior in higher-risk situations, and builds on our broader work to improve teen safety across ChatGPT.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "model spec",
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Funding grants for new research into AI and mental health",
+      "url": "https://openai.com/index/ai-mental-health-research-grants",
+      "date": "2025-12-01",
+      "snippet": "OpenAI is awarding up to $2 million in grants for research at the intersection of AI and mental health. The program supports projects that study real-world risks, benefits, and applications to improve safety and well-being.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Strengthening our safety ecosystem with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "snippet": "OpenAI works with independent experts to evaluate frontier AI systems. Third-party testing strengthens safety, validates safeguards, and increases transparency in how we assess model capabilities and risks.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Many Shot Jailbreaking",
+      "url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "jailbreak"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Measuring Faithfulness In Chain Of Thought Reasoning",
+      "url": "https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "faithfulness"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Measuring Progress On Scalable Oversight For Large Language Models",
+      "url": "https://www.anthropic.com/research/measuring-progress-on-scalable-oversight-for-large-language-models",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "language model",
+        "oversight"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Question Decomposition Improves The Faithfulness Of Model Generated Reasoning",
+      "url": "https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 2,
+      "safety_score": 1,
+      "ai_context_score": 1,
+      "matched_keywords": [
+        "ai",
+        "faithfulness"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Introducing Trusted Contact in ChatGPT",
+      "url": "https://openai.com/index/introducing-trusted-contact-in-chatgpt",
+      "date": "2026-05-07",
+      "snippet": "Introducing Trusted Contact in ChatGPT, an optional safety feature that notifies someone you trust if serious self-harm concerns are detected.",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.5 Instant System Card",
+      "url": "https://openai.com/index/gpt-5-5-instant-system-card",
+      "date": "2026-05-05",
+      "snippet": "",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.5 System Card",
+      "url": "https://openai.com/index/gpt-5-5-system-card",
+      "date": "2026-04-23",
+      "snippet": "",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Creating with Sora Safely",
+      "url": "https://openai.com/index/creating-with-sora-safely",
+      "date": "2026-03-23",
+      "snippet": "To address the novel safety challenges posed by a state-of-the-art video model as well as a new social creation platform, we\u2019ve built Sora 2 and the Sora app with safety at the foundation. Our approach is anchored in concrete protections.",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.4 Thinking System Card",
+      "url": "https://openai.com/index/gpt-5-4-thinking-system-card",
+      "date": "2026-03-05",
+      "snippet": "",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "GPT-5.3 Instant System Card",
+      "url": "https://openai.com/index/gpt-5-3-instant-system-card",
+      "date": "2026-03-03",
+      "snippet": "",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Addendum to GPT-5.2 System Card: GPT-5.2-Codex",
+      "url": "https://openai.com/index/gpt-5-2-codex-system-card",
+      "date": "2025-12-18",
+      "snippet": "",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "system card"
+      ],
+      "openai_focus_keywords": [
+        "system card"
+      ]
+    },
+    {
+      "source": "openai_news_rss",
+      "title": "Our approach to mental health-related litigation",
+      "url": "https://openai.com/index/mental-health-litigation-approach",
+      "date": "2025-11-25",
+      "snippet": "We\u2019re sharing our approach to mental health-related litigation. O handle sensitive cases with care, transparency, and respect while continuing to strengthen safety and support in ChatGPT.",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "safety"
+      ],
+      "openai_focus_keywords": [
+        "safety"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Alignment Faking",
+      "url": "https://www.anthropic.com/research/alignment-faking",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "alignment faking"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Emergent Misalignment Reward Hacking",
+      "url": "https://www.anthropic.com/research/emergent-misalignment-reward-hacking",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "reward hacking"
+      ]
+    },
+    {
+      "source": "anthropic_sitemap",
+      "title": "Probes Catch Sleeper Agents",
+      "url": "https://www.anthropic.com/research/probes-catch-sleeper-agents",
+      "date": null,
+      "snippet": "Matched via Anthropic research sitemap.",
+      "score": 1,
+      "safety_score": 1,
+      "ai_context_score": 0,
+      "matched_keywords": [
+        "sleeper agent"
+      ]
+    }
+  ]
+}

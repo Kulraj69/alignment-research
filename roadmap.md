@@ -15,7 +15,7 @@
 ### Week 2 — Tooling
 - [x] Install TransformerLens + dependencies
 - [x] Verify activation caching works on GPT-2 small
-- [x] Test patching: can we change output by patching activations?
+- [x] Test patching: can we change output by patching final-token residual activations?
 - [x] Establish baseline: what does "normal" activation look like?
 
 **Gate criterion:** Can we reliably cache and patch activations in GPT-2 small? **Passed.**
@@ -46,6 +46,7 @@
 - [x] Test: can a probe classify watched vs unwatched above chance?
 - [x] Identify: which layers are most discriminative?
 - [x] Compare: single-layer vs multi-layer probe accuracy
+- [x] Add stress audit: geometry, control-transfer probes, style-only false-positive test, and length-confound check
 
 **Gate criterion:** Probe accuracy > 65% on held-out test set? **Passed on GPT-2 small.**
 
@@ -62,8 +63,8 @@
 ## Phase 3: Causal Interventions (Days 61–90)
 
 ### Week 9–10 — Causal Patching
-- [ ] Patch evaluation-awareness activations into neutral prompts
-- [ ] Measure: does patched model become more safety-performative?
+- [x] Patch final-token evaluation-context activations into paired prompts on sampled layers
+- [x] Measure: does patching shift output logits measurably?
 - [ ] Test: can we "remove" evaluation-awareness signal by zeroing specific dimensions?
 - [ ] Compare patched vs unpatched behavior quantitatively
 
@@ -119,4 +120,4 @@ The research has three possible outcomes, all useful:
 
 ---
 
-*Last updated: 2026-05-09*
+*Last updated: 2026-05-14*

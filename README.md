@@ -129,14 +129,15 @@ Either way, we get evidence.
 - Exp002 probe pipeline upgraded to use real activations (no synthetic proxy features).
 - Pair-grouped evaluation in Exp002 to prevent watched/unwatched pair leakage.
 - 10-seed pair-grouped robustness sweep in Exp002.
+- Exp003 mechanistic stress audit with 20-seed control-subset probes, PCA/silhouette geometry diagnostics, style-only false-positive checks, length-confound correlations, and a patching-effect matrix.
 - Real-world signal ingest pipeline with dated artifacts in `data/real_world/`.
 - AVB-lite validation script and Markdown dashboard under `reports/`.
 - Lexical-control coverage: 12 matched monitoring pairs + 8 style-only controls excluded from the primary probe.
 
 **Current caveat:**
-- Probe scores remain preliminary detectability evidence. The 50-pair run is stronger than the 20-pair run, but larger-model replication and output-similarity checks are still needed before treating this as causal evidence.
+- Probe scores remain preliminary detectability evidence. Exp003 adds tougher control diagnostics, but larger-model replication and generated-output similarity checks are still needed before treating this as causal evidence.
 
-See `STATUS_REPORT_2026-05-09.md` and `reports/cvat_dashboard_latest.md` for the latest run snapshot.
+See `STATUS_REPORT_2026-05-14.md` and `reports/cvat_dashboard_latest.md` for the latest run snapshot.
 
 ---
 

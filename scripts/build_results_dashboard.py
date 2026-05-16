@@ -16,6 +16,7 @@ REPO_ROOT = Path(__file__).parent.parent
 DEFAULT_DATASET = REPO_ROOT / "avb_lite" / "real_world_pairs_v1.jsonl"
 DEFAULT_EXP001 = REPO_ROOT / "experiments" / "results" / "exp001" / "exp001_results.json"
 DEFAULT_EXP002 = REPO_ROOT / "experiments" / "results" / "exp002" / "exp002_results.json"
+DEFAULT_EXP003 = REPO_ROOT / "experiments" / "results" / "exp003" / "exp003_results.json"
 DEFAULT_SIGNAL_DIR = REPO_ROOT / "data" / "real_world"
 DEFAULT_OUT = REPO_ROOT / "reports" / "cvat_dashboard_latest.md"
 
@@ -117,16 +118,53 @@ def summarize_exp002(exp002: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def summarize_exp003(exp003: dict[str, Any]) -> dict[str, Any]:
+    if not exp003:
+        return {}
+
+    probe = exp003.get("probe_robustness", {})
+    transfer = exp003.get("cross_control_transfer", {})
+    confounds = exp003.get("length_confound_audit", {})
+    patching = exp003.get("patching_matrix", {})
+    geometry = exp003.get("representation_geometry", {})
+
+    def probe_accuracy(name: str, key: str = "mean") -> Any:
+        return probe.get(name, {}).get("accuracy", {}).get(key)
+
+    top_silhouette_layer = None
+    if geometry:
+        top_silhouette_layer = max(
+            geometry,
+            key=lambda layer: geometry[layer].get("silhouette_pca2") or -999,
+        )
+
+    return {
+        "primary_accuracy_mean": probe_accuracy("primary_all"),
+        "primary_accuracy_std": probe_accuracy("primary_all", "std"),
+        "lexical_accuracy_mean": probe_accuracy("lexical_matched"),
+        "standard_to_lexical_accuracy": transfer.get("standard_to_lexical", {}).get("accuracy"),
+        "style_probability_gap": transfer.get("primary_to_style_only_negative_control", {}).get("probability_gap"),
+        "char_gap_vs_activation": confounds.get("overall", {}).get("char_gap_vs_activation"),
+        "top_silhouette_layer": top_silhouette_layer,
+        "top_silhouette": geometry.get(top_silhouette_layer, {}).get("silhouette_pca2") if top_silhouette_layer else None,
+        "patch_peak_watched_to_normal": patching.get("peak_layers", {}).get("watched_to_normal", {}),
+        "patch_peak_normal_to_watched": patching.get("peak_layers", {}).get("normal_to_watched", {}),
+        "patching_degenerate": any(patching.get("degeneracy_by_direction", {}).values()),
+    }
+
+
 def build_markdown(
     dataset_rows: list[dict[str, Any]],
     exp001: dict[str, Any],
     exp002: dict[str, Any],
+    exp003: dict[str, Any],
     signals: dict[str, Any],
     signal_path: Optional[Path],
 ) -> str:
     today = dt.date.today().isoformat()
     exp001_summary = summarize_exp001(exp001)
     exp002_summary = summarize_exp002(exp002)
+    exp003_summary = summarize_exp003(exp003)
 
     probe_included = sum(1 for row in dataset_rows if row.get("include_in_probe", True))
     probe_excluded = len(dataset_rows) - probe_included
@@ -182,6 +220,28 @@ def build_markdown(
                 f"{percent(exp002_summary.get('seed_sweep_combined_std'))}"
             ),
             "",
+            "## Exp003 Mechanistic Stress Audit",
+            (
+                "- 20-seed primary probe accuracy: "
+                f"{percent(exp003_summary.get('primary_accuracy_mean'))} +/- "
+                f"{percent(exp003_summary.get('primary_accuracy_std'))}"
+            ),
+            f"- Lexical-matched-only accuracy: {percent(exp003_summary.get('lexical_accuracy_mean'))}",
+            f"- Standard-to-lexical transfer accuracy: {percent(exp003_summary.get('standard_to_lexical_accuracy'))}",
+            f"- Style-only negative-control P(watched) gap: {decimal(exp003_summary.get('style_probability_gap'))}",
+            f"- Prompt char-gap vs activation correlation: {decimal(exp003_summary.get('char_gap_vs_activation'))}",
+            (
+                "- Top PCA/silhouette layer: "
+                f"{exp003_summary.get('top_silhouette_layer', 'n/a')} "
+                f"({decimal(exp003_summary.get('top_silhouette'))})"
+            ),
+            (
+                "- Patching peak watched-to-normal: layer "
+                f"{exp003_summary.get('patch_peak_watched_to_normal', {}).get('layer', 'n/a')} "
+                f"({decimal(exp003_summary.get('patch_peak_watched_to_normal', {}).get('mean_logit_shift'))})"
+            ),
+            f"- Patching degeneracy flag: {exp003_summary.get('patching_degenerate', 'n/a')}",
+            "",
             "## External Safety Signals",
             f"- Latest signal artifact: {signal_path.relative_to(REPO_ROOT) if signal_path else 'n/a'}",
             f"- Source counts: {signal_counts}",
@@ -204,6 +264,7 @@ def main() -> None:
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--exp001", type=Path, default=DEFAULT_EXP001)
     parser.add_argument("--exp002", type=Path, default=DEFAULT_EXP002)
+    parser.add_argument("--exp003", type=Path, default=DEFAULT_EXP003)
     parser.add_argument("--signal-dir", type=Path, default=DEFAULT_SIGNAL_DIR)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     args = parser.parse_args()
@@ -214,6 +275,7 @@ def main() -> None:
         dataset_rows=load_jsonl(args.dataset),
         exp001=load_json(args.exp001),
         exp002=load_json(args.exp002),
+        exp003=load_json(args.exp003),
         signals=signals,
         signal_path=signal_path,
     )

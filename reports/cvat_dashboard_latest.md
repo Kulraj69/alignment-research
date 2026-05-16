@@ -1,4 +1,4 @@
-# CVAT Research Dashboard (2026-05-09)
+# CVAT Research Dashboard (2026-05-14)
 
 ## Dataset
 - AVB-lite pairs: 50
@@ -29,10 +29,20 @@
 - Combined-layer accuracy: 100.0%
 - Pair-grouped seed sweep combined accuracy: 91.5% +/- 4.5%
 
+## Exp003 Mechanistic Stress Audit
+- 20-seed primary probe accuracy: 92.7% +/- 4.3%
+- Lexical-matched-only accuracy: 72.5%
+- Standard-to-lexical transfer accuracy: 54.2%
+- Style-only negative-control P(watched) gap: 0.0028
+- Prompt char-gap vs activation correlation: 0.9159
+- Top PCA/silhouette layer: 7 (0.3002)
+- Patching peak watched-to-normal: layer 11 (0.6747)
+- Patching degeneracy flag: False
+
 ## External Safety Signals
-- Latest signal artifact: data/real_world/alignment_signals_2026-05-09.json
-- Source counts: {'openai': 35, 'anthropic': 9, 'arxiv': 11, 'total': 55}
-- Top signal: Verifier-Backed Hard Problem Generation for Mathematical Reasoning
+- Latest signal artifact: data/real_world/alignment_signals_2026-05-14.json
+- Source counts: {'openai': 34, 'anthropic': 9, 'arxiv': 12, 'total': 55}
+- Top signal: Metis: Learning to Jailbreak LLMs via Self-Evolving Metacognitive Policy Optimization
 
 ## Current Gates
 - Dataset milestone: 50-pair AVB-lite reached; next target is 200 balanced pairs.
