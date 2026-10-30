@@ -92,7 +92,7 @@ def validate_rows(rows: list[dict[str, Any]]) -> tuple[list[str], list[str]]:
 
 
 def print_summary(rows: list[dict[str, Any]], warnings: list[str]) -> None:
-    task_counts = Counter(row["task_type"] for row in rows)
+    task_counts = Counter(row.get("task_type", "<missing>") for row in rows)
     control_counts = Counter(row.get("control_type", "standard_monitoring") for row in rows)
     contrast_counts = Counter(row.get("contrast_type", "semantic_monitoring") for row in rows)
     probe_counts = Counter("included" if row.get("include_in_probe", True) else "excluded" for row in rows)
