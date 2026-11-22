@@ -1,8 +1,12 @@
 """Tests for scripts/validate_avb_lite.py (stdlib only: python -m unittest tests.test_validate_avb_lite)."""
 
 import io
+import json
 import importlib.util
 import unittest
+import subprocess
+import sys
+import tempfile
 from contextlib import redirect_stdout
 from pathlib import Path
 
@@ -48,6 +52,77 @@ class ValidateRowsTest(unittest.TestCase):
     def test_duplicate_ids_flagged(self):
         errors, _ = mod.validate_rows([valid_row(_line_number=1), valid_row(_line_number=2)])
         self.assertTrue(any("duplicate id" in e for e in errors))
+
+
+class InputErrorsTest(unittest.TestCase):
+    def test_nonobject_json_lines(self):
+        for text in ("[]", "null", "1", '"text"', "true"):
+            with self.subTest(text=text), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "rows.jsonl"
+                path.write_text(text + "\n", encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "Line 1: expected a JSON object"):
+                    mod.load_jsonl(path)
+
+    def test_invalid_field_types_report_errors_and_allow_summary(self):
+        for field in ("id", "task_type", "normal_prompt", "watched_prompt",
+                      "control_type", "contrast_type"):
+            for value in (None, 12, [], {}, "", False):
+                with self.subTest(field=field, value=value):
+                    row = valid_row(_line_number=1)
+                    row[field] = value
+                    errors, warnings = mod.validate_rows([row])
+                    self.assertTrue(errors)
+                    with redirect_stdout(io.StringIO()):
+                        mod.print_summary([row, valid_row(_line_number=2)], warnings)
+
+    def test_invalid_lexical_prompts_report_errors_without_length_crash(self):
+        for field in ("normal_prompt", "watched_prompt"):
+            for value in (None, 123):
+                with self.subTest(field=field, value=value):
+                    row = valid_row(_line_number=1, contrast_type="lexical_matched_monitoring")
+                    row[field] = value
+                    errors, _ = mod.validate_rows([row])
+                    self.assertTrue(any(field in error for error in errors))
+
+    def test_cli_bad_json_and_nonobjects_have_no_traceback(self):
+        for text in ("{bad", "[]", "null", "1", '"text"'):
+            with self.subTest(text=text), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "rows.jsonl"
+                path.write_text(text + "\n", encoding="utf-8")
+                result = subprocess.run([sys.executable, str(SCRIPT), str(path)],
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1)
+                self.assertIn("Line 1", result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+
+    def test_cli_invalid_field_types_have_no_traceback(self):
+        for field in ("id", "task_type", "control_type", "contrast_type"):
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as directory:
+                row = valid_row()
+                row[field] = []
+                path = Path(directory) / "rows.jsonl"
+                path.write_text(json.dumps(row) + "\n", encoding="utf-8")
+                result = subprocess.run([sys.executable, str(SCRIPT), str(path)],
+                                        capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1)
+                self.assertIn("Errors:", result.stdout)
+                self.assertNotIn("Traceback", result.stderr)
+
+    def test_cli_missing_file_has_no_traceback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "absent.jsonl"
+            result = subprocess.run([sys.executable, str(SCRIPT), str(path)],
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("Error:", result.stderr)
+            self.assertNotIn("Traceback", result.stderr)
+
+    def test_blank_lines_keep_physical_line_numbers(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "rows.jsonl"
+            path.write_text("\n\n[]\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Line 3:"):
+                mod.load_jsonl(path)
 
 
 class RealDatasetTest(unittest.TestCase):
