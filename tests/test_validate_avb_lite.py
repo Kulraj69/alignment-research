@@ -125,6 +125,47 @@ class InputErrorsTest(unittest.TestCase):
                 mod.load_jsonl(path)
 
 
+class IdDiagnosticsTest(unittest.TestCase):
+    def test_invalid_ids_use_line_label_for_every_diagnostic(self):
+        for value in (None, 12, [], {}, "", "   ", False):
+            with self.subTest(value=value):
+                row = valid_row(id=value, _line_number=23, task_type="unsupported_task",
+                                normal_prompt=[], watched_prompt=None,
+                                control_type=False, contrast_type={})
+                del row["hypothesis"]
+                errors, warnings = mod.validate_rows([row])
+                self.assertIn("line_23: id must be a non-empty string", errors)
+                self.assertTrue(warnings)
+                self.assertTrue(all(message.startswith("line_23:")
+                                    for message in errors + warnings))
+
+    def test_missing_ids_do_not_reserve_line_labels(self):
+        for missing_first in (True, False):
+            with self.subTest(missing_first=missing_first):
+                missing = valid_row(_line_number=23)
+                del missing["id"]
+                named = valid_row(id="line_23", _line_number=24)
+                rows = [missing, named] if missing_first else [named, missing]
+                errors, _ = mod.validate_rows(rows)
+                self.assertEqual(errors, ["line_23: missing required fields: ['id']"])
+
+    def test_cli_invalid_id_diagnostics_use_physical_line(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "rows.jsonl"
+            row = valid_row(id=[], task_type="unsupported_task")
+            path.write_text("\n\n" + json.dumps(row) + "\n", encoding="utf-8")
+            result = subprocess.run([sys.executable, str(SCRIPT), str(path)],
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertNotIn("Traceback", result.stderr)
+            self.assertIn("line_3: id must be a non-empty string", result.stdout)
+            for section in ("Warnings:", "Errors:"):
+                messages = result.stdout.split(section, 1)[1].split("\n\n", 1)[0]
+                self.assertTrue(messages.strip())
+                for message in messages.strip().splitlines():
+                    self.assertTrue(message.startswith("- line_3:"), message)
+
+
 class RealDatasetTest(unittest.TestCase):
     def test_shipped_dataset_is_valid(self):
         dataset = SCRIPT.parent.parent / "avb_lite" / "real_world_pairs_v1.jsonl"
