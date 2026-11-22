@@ -56,18 +56,20 @@ def validate_rows(rows: list[dict[str, Any]]) -> tuple[list[str], list[str]]:
 
     for row in rows:
         line_number = row["_line_number"]
-        row_id = row.get("id", f"line_{line_number}")
+        raw_id = row.get("id")
+        valid_id = isinstance(raw_id, str) and bool(raw_id.strip())
+        row_id = raw_id if valid_id else f"line_{line_number}"
 
         missing = sorted(REQUIRED_FIELDS - row.keys())
         if missing:
             errors.append(f"{row_id}: missing required fields: {missing}")
 
-        if not isinstance(row_id, str) or not row_id.strip():
-            errors.append(f"line_{line_number}: id must be a non-empty string")
-        else:
-            if row_id in seen_ids:
+        if "id" in row and not valid_id:
+            errors.append(f"{row_id}: id must be a non-empty string")
+        elif valid_id:
+            if raw_id in seen_ids:
                 errors.append(f"{row_id}: duplicate id")
-            seen_ids.add(row_id)
+            seen_ids.add(raw_id)
 
         task_type = row.get("task_type")
         if not isinstance(task_type, str) or task_type not in VALID_TASK_TYPES:
