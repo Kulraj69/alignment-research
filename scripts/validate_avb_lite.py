@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -41,6 +42,8 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
                 row = json.loads(stripped)
             except json.JSONDecodeError as exc:
                 raise ValueError(f"Line {line_number}: invalid JSON: {exc}") from exc
+            if not isinstance(row, dict):
+                raise ValueError(f"Line {line_number}: expected a JSON object")
             row["_line_number"] = line_number
             rows.append(row)
     return rows
@@ -53,18 +56,23 @@ def validate_rows(rows: list[dict[str, Any]]) -> tuple[list[str], list[str]]:
 
     for row in rows:
         line_number = row["_line_number"]
-        row_id = row.get("id", f"line_{line_number}")
+        raw_id = row.get("id")
+        valid_id = isinstance(raw_id, str) and bool(raw_id.strip())
+        row_id = raw_id if valid_id else f"line_{line_number}"
 
         missing = sorted(REQUIRED_FIELDS - row.keys())
         if missing:
             errors.append(f"{row_id}: missing required fields: {missing}")
 
-        if row_id in seen_ids:
-            errors.append(f"{row_id}: duplicate id")
-        seen_ids.add(row_id)
+        if "id" in row and not valid_id:
+            errors.append(f"{row_id}: id must be a non-empty string")
+        elif valid_id:
+            if raw_id in seen_ids:
+                errors.append(f"{row_id}: duplicate id")
+            seen_ids.add(raw_id)
 
         task_type = row.get("task_type")
-        if task_type not in VALID_TASK_TYPES:
+        if not isinstance(task_type, str) or task_type not in VALID_TASK_TYPES:
             errors.append(f"{row_id}: unknown task_type {task_type!r}")
 
         for field in ("normal_prompt", "watched_prompt"):
@@ -76,12 +84,18 @@ def validate_rows(rows: list[dict[str, Any]]) -> tuple[list[str], list[str]]:
         if missing_source:
             warnings.append(f"{row_id}: missing source metadata: {missing_source}")
 
+        for field in ("control_type", "contrast_type"):
+            if field in row and (not isinstance(row[field], str) or not row[field].strip()):
+                errors.append(f"{row_id}: {field} must be a non-empty string")
+
         contrast_type = row.get("contrast_type", "semantic_monitoring")
         include_in_probe = row.get("include_in_probe", True)
         if contrast_type == "style_only_control" and include_in_probe:
             errors.append(f"{row_id}: style-only controls must set include_in_probe=false")
 
-        if contrast_type == "lexical_matched_monitoring":
+        if contrast_type == "lexical_matched_monitoring" and all(
+            isinstance(row.get(field), str) for field in ("normal_prompt", "watched_prompt")
+        ):
             normal_len = len(row.get("normal_prompt", ""))
             watched_len = len(row.get("watched_prompt", ""))
             length_gap = abs(normal_len - watched_len)
@@ -91,10 +105,14 @@ def validate_rows(rows: list[dict[str, Any]]) -> tuple[list[str], list[str]]:
     return errors, warnings
 
 
+def _summary_label(value: Any) -> str:
+    return value if isinstance(value, str) else "<invalid>"
+
+
 def print_summary(rows: list[dict[str, Any]], warnings: list[str]) -> None:
-    task_counts = Counter(row.get("task_type", "<missing>") for row in rows)
-    control_counts = Counter(row.get("control_type", "standard_monitoring") for row in rows)
-    contrast_counts = Counter(row.get("contrast_type", "semantic_monitoring") for row in rows)
+    task_counts = Counter(_summary_label(row.get("task_type", "<missing>")) for row in rows)
+    control_counts = Counter(_summary_label(row.get("control_type", "standard_monitoring")) for row in rows)
+    contrast_counts = Counter(_summary_label(row.get("contrast_type", "semantic_monitoring")) for row in rows)
     probe_counts = Counter("included" if row.get("include_in_probe", True) else "excluded" for row in rows)
     sourced = sum(1 for row in rows if SOURCE_FIELDS.issubset(row.keys()))
 
@@ -123,7 +141,11 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    rows = load_jsonl(args.dataset)
+    try:
+        rows = load_jsonl(args.dataset)
+    except (ValueError, OSError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        raise SystemExit(1) from None
     errors, warnings = validate_rows(rows)
     print_summary(rows, warnings)
 
